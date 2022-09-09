@@ -11,7 +11,6 @@ export function ClaimRewards() {
         backgroundRepeat: "no-repeat",
         width: "100%",
         height: "100%",
-        backgroundColor: CONFIG.colors.background,
       }}
     >
       <View

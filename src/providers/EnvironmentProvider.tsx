@@ -46,7 +46,7 @@ export function EnvironmentProvider({
   children: React.ReactChild;
   defaultCluster: string;
 }) {
-  const cluster = CLUSTER;
+  const cluster = defaultCluster;
   const foundEnvironment = ENVIRONMENTS.find((e) => e.label === cluster);
   const [environment, setEnvironment] = useState<Environment>(
     foundEnvironment ?? ENVIRONMENTS[0]!

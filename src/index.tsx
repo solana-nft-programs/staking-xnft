@@ -1,7 +1,8 @@
 import ReactXnft, { AnchorDom } from "react-xnft";
 import { App } from "./App";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { EnvironmentProvider } from "./providers/EnvironmentProvider";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,11 +14,13 @@ export const queryClient = new QueryClient({
 
 ReactXnft.render(
   <AnchorDom>
-    <QueryClientProvider client={queryClient}>
-      <>
-        <App />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </>
-    </QueryClientProvider>
+    <EnvironmentProvider defaultCluster="mainnet-beta">
+      <QueryClientProvider client={queryClient}>
+        <>
+          <App />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </>
+      </QueryClientProvider>
+    </EnvironmentProvider>
   </AnchorDom>
 );

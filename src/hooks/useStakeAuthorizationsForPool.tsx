@@ -2,7 +2,7 @@ import type { AccountData } from "@cardinal/common";
 import type { StakeAuthorizationData } from "@cardinal/staking/dist/cjs/programs/stakePool";
 import { getStakeAuthorizationsForPool } from "@cardinal/staking/dist/cjs/programs/stakePool/accounts";
 import { useEnvironmentCtx } from "../providers/EnvironmentProvider";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { useStakePoolId } from "./useStakePoolId";
 
