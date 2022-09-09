@@ -14,7 +14,13 @@
     "@coral-xyz/xnft-cli": "latest"
   },
   "dependencies": {
+    "@cardinal/staking": "^1.7.4",
+    "@metaplex-foundation/mpl-token-metadata": "1.2.5",
+    "@solana/web3.js": "^1.59.1",
+    "assert": "^2.0.0",
+    "process": "^0.11.10",
     "react": "^17.0.2",
+    "react-query": "^3.39.2",
     "react-xnft": "latest"
   }
 }

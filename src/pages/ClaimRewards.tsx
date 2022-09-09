@@ -6,15 +6,16 @@ export function ClaimRewards() {
   return (
     <View
       style={{
-        backgroundImage: "url(../assets/twitter-header.png)",
+        backgroundImage:
+          "url(https://github.com/cardinal-labs/cardinal-staking-xnft/raw/master/assets/background.png)",
         backgroundRepeat: "no-repeat",
+        width: "100%",
         height: "100%",
         backgroundColor: CONFIG.colors.background,
       }}
     >
       <View
         style={{
-          background: CONFIG.colors.backgroundGradient,
           position: "fixed",
           left: 0,
           right: 0,

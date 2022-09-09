@@ -13,30 +13,36 @@ ReactXnft.events.on("connect", () => {
 
 export function App() {
   return (
-    <View
-      className="bg-red"
-      style={{ height: "100%", backgroundColor: CONFIG.colors.background }}
-    >
+    <View style={{ height: "100%" }}>
       <Tab.Navigator
         style={{
-          backgroundColor: CONFIG.colors.background,
+          backgroundColor: "#111",
           borderTop: "none",
         }}
         options={({ route }) => {
           return {
-            tabBarActiveTintColor: "#555",
-            tabBarInactiveTintColor: "#888",
-            tabBarIcon: ({ focused }) => {
-              const color = focused
-                ? CONFIG.colors.activeTab
-                : CONFIG.colors.inactiveTab;
+            tabBarActiveTintColor: "#401a2f",
+            tabBarInactiveTintColor: "#111",
+            tabBarIcon: () => {
               if (route.name === "claim") {
                 return (
-                  <Tab.Icon element={<CardinalCrosshair fill={"#FFF"} />} />
+                  <Tab.Icon
+                    element={
+                      <View>
+                        <Text>Claim</Text>
+                      </View>
+                    }
+                  />
                 );
               } else {
                 return (
-                  <Tab.Icon element={<CardinalCrosshair fill={"#FFF"} />} />
+                  <Tab.Icon
+                    element={
+                      <View>
+                        <Text>Stake</Text>
+                      </View>
+                    }
+                  />
                 );
               }
             },
