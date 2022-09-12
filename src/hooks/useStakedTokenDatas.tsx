@@ -100,12 +100,6 @@ export const useStakedTokenDatas = () => {
           getStakeEntryDatas(connection, stakePoolId, walletId)
         )
       );
-      console.log(
-        "aaa",
-        stakeEntryDataGroups,
-        stakePoolId.toString(),
-        walletIds.map((i) => i.toBase58())
-      );
       const tokenDatas = stakeEntryDataGroups.flat();
       const hydratedTokenDatas = tokenDatas.reduce((acc, tokenData) => {
         acc.push({

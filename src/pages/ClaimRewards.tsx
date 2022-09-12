@@ -7,7 +7,7 @@ export function ClaimRewards() {
     <View
       style={{
         backgroundImage:
-          "url(https://github.com/cardinal-labs/cardinal-staking-xnft/raw/master/assets/background.png)",
+          "url(https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/background.png)",
         backgroundRepeat: "no-repeat",
         width: "100%",
         height: "100%",

@@ -5,14 +5,13 @@ import { useAllowedTokenDatas } from "../hooks/useAllowedTokenDatas";
 export function StakeUntake() {
   const allowedTokens = useAllowedTokenDatas(true);
   const stakedTokenDatas = useStakedTokenDatas();
-  console.log("-----", stakedTokenDatas);
   return (
     <View style={{ height: "100%" }}>
       <View
         style={{
           padding: "20px",
           backgroundImage:
-            "url(https://github.com/cardinal-labs/cardinal-staking-xnft/raw/master/assets/background.png)",
+            "url(https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/background.png)",
           backgroundRepeat: "no-repeat",
           width: "100%",
           height: "100%",
@@ -59,7 +58,7 @@ export function StakeUntake() {
                       lineHeight: "19.08px",
                     }}
                   >
-                    {tokenData.metaplexData?.data.data.name}
+                    {tokenData.metaplexData?.parsed.data.name}
                   </Text>
                   <View style={{ display: "flex" }}>
                     <View
@@ -117,7 +116,7 @@ export function StakeUntake() {
                   }}
                 >
                   <Text>{tokenData.metaplexData?.data.data.name}</Text>
-                  <Button>Stake</Button>
+                  <Button>Unstake</Button>
                 </View>
               </View>
             );
