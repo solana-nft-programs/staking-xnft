@@ -107,7 +107,7 @@ export const useStakedTokenDatas = () => {
         })
         return acc
       }, [] as StakeEntryTokenData[])
-      return [...hydratedTokenDatas, ...hydratedTokenDatas]
+      return hydratedTokenDatas
     },
     { refetchInterval: 30000, enabled: !!stakePoolId && walletIds.length > 0 }
   )
