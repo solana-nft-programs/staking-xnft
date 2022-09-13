@@ -26,14 +26,12 @@ export function ClaimRewards() {
           </View>
           <Text
             style={{
-              fontSize: '30px',
               marginTop: '12px',
               textAlign: 'center',
               fontWeight: 500,
-              lineHeight: '24px',
             }}
           >
-            <RewardsAccumulated />
+            <RewardsAccumulated size={30} />
           </Text>
           <Text
             style={{
