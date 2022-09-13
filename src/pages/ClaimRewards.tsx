@@ -1,116 +1,63 @@
-import { usePublicKey, View, Text, Button, Stack } from "react-xnft";
-import { Nav } from "../common/Nav";
-import { CONFIG } from "../config";
+import { View, Text, Button } from 'react-xnft'
+import { RewardRate } from '../components/RewardRate'
+import { RewardsAccumulated } from '../components/RewardsAccumulated'
+import { StakePoolImage } from '../components/StakePoolImage'
+import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
 
 export function ClaimRewards() {
+  const { stakePoolMetadata } = useStakePoolMetadata()
   return (
-    <View
-      style={{
-        backgroundImage:
-          "url(https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/background.png)",
-        backgroundRepeat: "no-repeat",
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <View style={{ height: '100%', width: '100%' }}>
       <View
         style={{
-          position: "fixed",
-          left: 0,
-          right: 0,
-          top: 0,
-          height: "460px",
-        }}
-      ></View>
-    </View>
-  );
-}
-
-function Claim() {
-  //   const estimatedRewards = useEstimatedRewards();
-  return (
-    <View>
-      <View>
-        <Header isDead={true} estimatedRewards={0} />
-      </View>
-    </View>
-  );
-}
-
-function Header({ isDead, estimatedRewards }: any) {
-  const publicKey = usePublicKey();
-
-  const handleClaimRewards = () => {
-    (async () => {})();
-  };
-  return (
-    <View
-      style={{
-        marginTop: "255px",
-      }}
-    >
-      <View>
-        <Text
-          style={{
-            textAlign: "center",
-            color: CONFIG.colors.text,
-            fontSize: "20px",
-            fontWeight: 400,
-            lineHeight: "150%",
-          }}
-        >
-          Estimated Rewards
-        </Text>
-        <Text
-          style={{
-            fontSize: "40px",
-            marginTop: "12px",
-            textAlign: "center",
-            fontWeight: 500,
-            lineHeight: "24px",
-            color: CONFIG.colors.text,
-          }}
-        >
-          {estimatedRewards} DUST
-        </Text>
-        <Text
-          style={{
-            marginTop: "12px",
-            color: CONFIG.colors.textSecondary,
-            textAlign: "center",
-          }}
-        >
-          {isDead ? 15 : 5} $DUST/day
-        </Text>
-      </View>
-      <View
-        style={{
-          marginTop: "20px",
-          width: "268px",
-          display: "flex",
-          justifyContent: "space-between",
-          flexDirection: "row",
-          marginLeft: "auto",
-          marginRight: "auto",
+          marginTop: '15vh',
         }}
       >
-        <Button
-          onClick={handleClaimRewards}
+        <View>
+          <View
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '150px',
+            }}
+          >
+            <StakePoolImage stakePoolMetadata={stakePoolMetadata} width={150} />
+          </View>
+          <Text
+            style={{
+              fontSize: '30px',
+              marginTop: '12px',
+              textAlign: 'center',
+              fontWeight: 500,
+              lineHeight: '24px',
+            }}
+          >
+            <RewardsAccumulated />
+          </Text>
+          <Text
+            style={{
+              marginTop: '12px',
+              textAlign: 'center',
+            }}
+          >
+            <RewardRate />
+          </Text>
+        </View>
+        <View
           style={{
-            flex: 1,
-            background: "#FFEFEB",
-            color: "#6100FF",
-            border: "1px solid #000000",
-            boxShadow: "4px 3px 0px #6100FF",
-            borderRadius: "8px",
-            width: "192px",
-            height: "40px",
-            fontWeight: 500,
+            marginTop: '20px',
+            display: 'flex',
+            justifyContent: 'center',
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}
         >
-          Claim $DUST
-        </Button>
+          <Button onClick={() => {}} style={{}}>
+            Claim
+          </Button>
+        </View>
       </View>
     </View>
-  );
+  )
 }

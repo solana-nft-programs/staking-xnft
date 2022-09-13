@@ -1,8 +1,16 @@
-import ReactXnft, { Tab, Text, View } from "react-xnft";
-import { CardinalCrosshair } from "./assets/cardinalCrosshair";
-import { CONFIG } from "./config";
-import { ClaimRewards } from "./pages/ClaimRewards";
-import { StakeUntake } from "./pages/StakeUnstake";
+import ReactXnft, {
+  Image,
+  List,
+  ListItem,
+  Stack,
+  Tab,
+  Text,
+  useNavigation,
+  View,
+} from "react-xnft";
+import { stakePoolMetadatas } from "./config/config";
+import { Home } from "./pages/Home";
+import { Pool } from "./pages/Pool";
 
 //
 // On connection to the host environment, warm the cache.
@@ -13,53 +21,32 @@ ReactXnft.events.on("connect", () => {
 
 export function App() {
   return (
-    <View style={{ height: "100%" }}>
-      <Tab.Navigator
-        style={{
-          backgroundColor: "#111",
-          borderTop: "none",
-        }}
-        options={({ route }) => {
-          return {
-            tabBarActiveTintColor: "#401a2f",
-            tabBarInactiveTintColor: "#111",
-            tabBarIcon: () => {
-              if (route.name === "claim") {
-                return (
-                  <Tab.Icon
-                    element={
-                      <View>
-                        <Text>Claim</Text>
-                      </View>
-                    }
-                  />
-                );
-              } else {
-                return (
-                  <Tab.Icon
-                    element={
-                      <View>
-                        <Text>Stake</Text>
-                      </View>
-                    }
-                  />
-                );
-              }
-            },
-          };
-        }}
-      >
-        <Tab.Screen
-          name="claim"
-          disableLabel={true}
-          component={() => <ClaimRewards />}
-        />
-        <Tab.Screen
-          name="stake"
-          disableLabel={true}
-          component={() => <StakeUntake />}
-        />
-      </Tab.Navigator>
-    </View>
+    <Stack.Navigator
+      style={{}}
+      initialRoute={{ name: "home" }}
+      options={({ route }) => {
+        switch (route.name) {
+          case "home":
+            return {
+              title: "Select Pool",
+            };
+          case "pool":
+            return {
+              title: route.props.stakePoolMetadata.displayName,
+            };
+          default:
+            throw new Error("unknown route");
+        }
+      }}
+    >
+      <Stack.Screen
+        name={"home"}
+        component={(props: any) => <Home {...props} />}
+      />
+      <Stack.Screen
+        name={"pool"}
+        component={(props: any) => <Pool {...props} />}
+      />
+    </Stack.Navigator>
   );
 }

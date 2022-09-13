@@ -1,21 +1,21 @@
-import type { AccountData } from "@cardinal/common";
-import type { StakeAuthorizationData } from "@cardinal/staking/dist/cjs/programs/stakePool";
-import { getStakeAuthorizationsForPool } from "@cardinal/staking/dist/cjs/programs/stakePool/accounts";
-import { useEnvironmentCtx } from "../providers/EnvironmentProvider";
-import { useQuery } from "@tanstack/react-query";
+import type { AccountData } from '@cardinal/common'
+import type { StakeAuthorizationData } from '@cardinal/staking/dist/cjs/programs/stakePool'
+import { getStakeAuthorizationsForPool } from '@cardinal/staking/dist/cjs/programs/stakePool/accounts'
+import { useEnvironmentCtx } from '../providers/EnvironmentProvider'
+import { useQuery } from '@tanstack/react-query'
 
-import { useStakePoolId } from "./useStakePoolId";
+import { useStakePoolId } from './useStakePoolId'
 
 export const useStakeAuthorizationsForPool = () => {
-  const { secondaryConnection } = useEnvironmentCtx();
-  const stakePoolId = useStakePoolId();
+  const { secondaryConnection } = useEnvironmentCtx()
+  const stakePoolId = useStakePoolId()
   return useQuery<AccountData<StakeAuthorizationData>[] | undefined>(
-    ["useStakeAuthorizationsForPool", stakePoolId?.toString()],
+    ['useStakeAuthorizationsForPool', stakePoolId?.toString()],
     async () => {
       if (stakePoolId) {
-        return getStakeAuthorizationsForPool(secondaryConnection, stakePoolId);
+        return getStakeAuthorizationsForPool(secondaryConnection, stakePoolId)
       }
     },
     { enabled: !!stakePoolId }
-  );
-};
+  )
+}
