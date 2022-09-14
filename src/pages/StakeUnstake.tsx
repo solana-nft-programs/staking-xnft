@@ -1,8 +1,8 @@
 import { View, Text, Button, Image, Loading } from 'react-xnft'
 import { useStakedTokenDatas } from '../hooks/useStakedTokenDatas'
 import { useAllowedTokenDatas } from '../hooks/useAllowedTokenDatas'
-import { StakeToken } from '../components/StakeToken'
-import { UnstakeToken } from '../components/UnstakeToken'
+import { UnstakedToken } from '../components/UnstakedToken'
+import { StakedToken } from '../components/StakedToken'
 
 export function StakeUntake() {
   const allowedTokens = useAllowedTokenDatas(true)
@@ -143,10 +143,10 @@ export function StakeUntake() {
             }}
           >
             {allowedTokens.data?.map((tokenData) => (
-              <StakeToken tokenData={tokenData} />
+              <UnstakedToken tokenData={tokenData} />
             ))}
             {stakedTokenDatas.data?.map((tokenData) => (
-              <UnstakeToken tokenData={tokenData} />
+              <StakedToken tokenData={tokenData} />
             ))}
           </View>
         )}

@@ -3,7 +3,7 @@ import { AllowedTokenData } from '../hooks/useAllowedTokenDatas'
 import { useHandleStake } from '../handlers/useHandleStake'
 import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
 
-export function StakeToken({ tokenData }: { tokenData: AllowedTokenData }) {
+export function UnstakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
   const { stakePoolMetadata } = useStakePoolMetadata()
   const handleStake = useHandleStake()
   return (
@@ -35,7 +35,10 @@ export function StakeToken({ tokenData }: { tokenData: AllowedTokenData }) {
           alignItems: 'center',
         }}
       >
-        <Text>{tokenData.metaplexData?.parsed.data.name}</Text>
+        <Text>
+          {tokenData.metadata?.parsed.name ||
+            tokenData.metaplexData?.parsed.data.name}
+        </Text>
         <Button
           onClick={() => {
             handleStake.mutate({

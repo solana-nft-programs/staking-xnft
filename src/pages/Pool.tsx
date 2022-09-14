@@ -25,7 +25,7 @@ export function Pool({
             tabBarActiveTintColor: '#401a2f',
             tabBarInactiveTintColor: '#111',
             tabBarIcon: () => {
-              if (route.name === 'claim') {
+              if (route.name === 'stake') {
                 return (
                   <Tab.Icon
                     element={

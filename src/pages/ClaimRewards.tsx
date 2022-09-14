@@ -1,11 +1,15 @@
-import { View, Text, Button } from 'react-xnft'
+import { View, Text, Button, Loading } from 'react-xnft'
 import { RewardRate } from '../components/RewardRate'
 import { RewardsAccumulated } from '../components/RewardsAccumulated'
 import { StakePoolImage } from '../components/StakePoolImage'
+import { useHandleClaimRewards } from '../handlers/useHandleClaimRewards'
+import { useStakedTokenDatas } from '../hooks/useStakedTokenDatas'
 import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
 
 export function ClaimRewards() {
   const { stakePoolMetadata } = useStakePoolMetadata()
+  const handleClaimRewards = useHandleClaimRewards()
+  const stakedTokenDatas = useStakedTokenDatas()
   return (
     <View style={{ height: '100%', width: '100%' }}>
       <View
@@ -22,7 +26,13 @@ export function ClaimRewards() {
               height: '150px',
             }}
           >
-            <StakePoolImage stakePoolMetadata={stakePoolMetadata} width={150} />
+            <StakePoolImage
+              stakePoolMetadata={stakePoolMetadata}
+              width={150}
+              style={{
+                margin: '0px auto',
+              }}
+            />
           </View>
           <Text
             style={{
@@ -51,8 +61,23 @@ export function ClaimRewards() {
             marginRight: 'auto',
           }}
         >
-          <Button onClick={() => {}} style={{}}>
-            Claim
+          <Button
+            onClick={() => {
+              stakedTokenDatas.data &&
+                handleClaimRewards.mutate({ tokenDatas: stakedTokenDatas.data })
+            }}
+            style={{}}
+          >
+            {handleClaimRewards.isLoading ? (
+              <Loading
+                style={{
+                  height: '25px',
+                  width: '25px',
+                }}
+              />
+            ) : (
+              'Claim'
+            )}
           </Button>
         </View>
       </View>
