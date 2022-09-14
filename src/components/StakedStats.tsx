@@ -1,6 +1,7 @@
 import { secondstoDuration } from '@cardinal/common'
 import { BN } from '@project-serum/anchor'
 import { PublicKey } from '@solana/web3.js'
+import { Text, View } from 'react-xnft'
 import {
   formatAmountAsDecimal,
   formatMintNaturalAmountAsDecimal,
@@ -23,25 +24,37 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
   const rewardsRate = useRewardsRate()
   const rewards = useRewards()
   return (
-    <div className="mt-2">
+    <View>
       {tokenData.stakeEntry &&
         tokenData.stakeEntry.parsed.amount.toNumber() > 1 &&
         rewardMintInfo.data && (
-          <div className="flex w-full flex-row justify-between text-xs font-semibold">
-            <span>Amount:</span>
-            <span className="text-right">
+          <View
+            style={{
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Text>Amount:</Text>
+            <Text>
               {formatAmountAsDecimal(
                 rewardMintInfo.data?.mintInfo.decimals,
                 tokenData.stakeEntry && tokenData.stakeEntry.parsed.amount,
                 rewardMintInfo.data?.mintInfo.decimals
               )}
-            </span>
-          </div>
+            </Text>
+          </View>
         )}
       {tokenData.stakeEntry?.pubkey && (
-        <div className="flex w-full flex-row justify-between text-xs font-semibold">
-          <span>Boost:</span>
-          <span className="text-right">
+        <View
+          style={{
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text>Boost:</Text>
+          <Text>
             {(rewardDistributorData.data?.parsed.multiplierDecimals !==
               undefined &&
               formatAmountAsDecimal(
@@ -58,8 +71,8 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
               ).toString()) ||
               1}
             x
-          </span>
-        </div>
+          </Text>
+        </View>
       )}
       {rewardDistributorData.data &&
         rewardDistributorData.data.parsed.rewardDurationSeconds &&
@@ -68,9 +81,15 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
         ) && (
           <>
             {tokenData.stakeEntry && rewardMintInfo.data && (
-              <div className="flex w-full flex-row justify-between text-xs font-semibold">
-                <span>Daily:</span>
-                <span className="text-right">
+              <View
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text>Daily:</Text>
+                <Text>
                   {formatAmountAsDecimal(
                     rewardMintInfo.data.mintInfo.decimals,
                     rewardsRate.data?.rewardsRateMap[
@@ -78,13 +97,19 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
                     ]?.dailyRewards || new BN(0), // max of 5 decimals
                     Math.min(rewardMintInfo.data.mintInfo.decimals, 5)
                   )}
-                </span>
-              </div>
+                </Text>
+              </View>
             )}
             {tokenData.stakeEntry && rewardMintInfo.data && (
-              <div className="flex w-full flex-row justify-between text-xs font-semibold">
-                <span>Claim:</span>
-                <span className="text-right">
+              <View
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text>Claim:</Text>
+                <Text>
                   {formatMintNaturalAmountAsDecimal(
                     rewardMintInfo.data.mintInfo,
                     rewards.data?.rewardMap[
@@ -93,8 +118,8 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
                     // max of 5 decimals
                     Math.min(rewardMintInfo.data.mintInfo.decimals, 5)
                   ).toLocaleString()}
-                </span>
-              </div>
+                </Text>
+              </View>
             )}
             {rewards.data &&
               rewards.data.rewardMap[
@@ -103,59 +128,73 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
               rewardDistributorData.data?.parsed.rewardDurationSeconds.gte(
                 new BN(60)
               ) && (
-                <div className="flex w-full flex-row justify-between text-xs font-semibold">
-                  <span>Next rewards:</span>
-                  <span>
+                <View
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Text>Next rewards:</Text>
+                  <Text>
                     {secondstoDuration(
                       rewards.data.rewardMap[
                         tokenData.stakeEntry?.pubkey.toString() || ''
                       ]?.nextRewardsIn.toNumber() || 0
                     )}
-                  </span>
-                </div>
+                  </Text>
+                </View>
               )}
           </>
         )}
-      {tokenData.stakeEntry?.parsed.cooldownStartSeconds &&
-      stakePool?.parsed.cooldownSeconds ? (
-        <div className="flex w-full flex-row justify-between text-xs font-semibold">
-          <span>Cooldown:</span>
-          <span className="text-right">
-            {tokenData.stakeEntry?.parsed.cooldownStartSeconds.toNumber() +
-              stakePool.parsed.cooldownSeconds -
-              UTCNow >
-            0
-              ? secondstoDuration(
-                  tokenData.stakeEntry?.parsed.cooldownStartSeconds.toNumber() +
-                    stakePool.parsed.cooldownSeconds -
-                    UTCNow
-                )
-              : 'Finished!'}
-          </span>
-        </div>
-      ) : (
-        ''
-      )}
-      {stakePool?.parsed.minStakeSeconds &&
-      tokenData.stakeEntry?.parsed.lastStakedAt ? (
-        <div className="flex w-full flex-row justify-between text-xs font-semibold">
-          <span>Min Time:</span>
-          <span className="text-right">
-            {tokenData.stakeEntry?.parsed.lastStakedAt.toNumber() +
-              stakePool.parsed.minStakeSeconds -
-              UTCNow >
-            0
-              ? secondstoDuration(
-                  tokenData.stakeEntry?.parsed.lastStakedAt.toNumber() +
-                    stakePool.parsed.minStakeSeconds -
-                    UTCNow
-                )
-              : 'Satisfied'}
-          </span>
-        </div>
-      ) : (
-        ''
-      )}
-    </div>
+      {!!tokenData.stakeEntry?.parsed.cooldownStartSeconds &&
+        !!stakePool?.parsed.cooldownSeconds && (
+          <View
+            style={{
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Text>Cooldown:</Text>
+            <Text>
+              {tokenData.stakeEntry?.parsed.cooldownStartSeconds.toNumber() +
+                stakePool.parsed.cooldownSeconds -
+                UTCNow >
+              0
+                ? secondstoDuration(
+                    tokenData.stakeEntry?.parsed.cooldownStartSeconds.toNumber() +
+                      stakePool.parsed.cooldownSeconds -
+                      UTCNow
+                  )
+                : 'Finished!'}
+            </Text>
+          </View>
+        )}
+      {!!stakePool?.parsed.minStakeSeconds &&
+        !!tokenData.stakeEntry?.parsed.lastStakedAt && (
+          <View
+            style={{
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Text>Min Time:</Text>
+            <Text>
+              {tokenData.stakeEntry?.parsed.lastStakedAt.toNumber() +
+                stakePool.parsed.minStakeSeconds -
+                UTCNow >
+              0
+                ? secondstoDuration(
+                    tokenData.stakeEntry?.parsed.lastStakedAt.toNumber() +
+                      stakePool.parsed.minStakeSeconds -
+                      UTCNow
+                  )
+                : 'Satisfied'}
+            </Text>
+          </View>
+        )}
+    </View>
   )
 }

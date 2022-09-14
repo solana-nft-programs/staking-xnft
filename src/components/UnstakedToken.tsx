@@ -1,4 +1,4 @@
-import { View, Text, Button, Image, Loading } from 'react-xnft'
+import { View, Text, Button, Image, Loading, useNavigation } from 'react-xnft'
 import { AllowedTokenData } from '../hooks/useAllowedTokenDatas'
 import { useHandleStake } from '../handlers/useHandleStake'
 import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
@@ -6,6 +6,7 @@ import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
 export function UnstakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
   const { stakePoolMetadata } = useStakePoolMetadata()
   const handleStake = useHandleStake()
+  const nav = useNavigation()
   return (
     <View
       style={{
@@ -16,30 +17,81 @@ export function UnstakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
         flexDirection: 'column',
       }}
     >
-      <Image
-        src={tokenData.metadata?.parsed.image}
+      <Button
         style={{
           borderRadius: '6px',
-          maxWidth: 'calc(100% - 10px)',
+          width: '100%',
+          height: 'auto',
+          maxWidth: '100%',
           minHeight: '150px',
           minWidth: '150px',
+          position: 'relative',
+          padding: '0px',
         }}
-      />
-      <View
-        style={{
-          marginTop: '3px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '5px',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
+        onClick={() => nav.push('stake-detail', { tokenData })}
       >
-        <Text>
+        <Text
+          style={{
+            background: 'rgba(0, 0, 0, 0.7)',
+            borderRadius: '6px',
+            padding: '4px 6px',
+            position: 'absolute',
+            top: '3px',
+            left: '3px',
+            textAlign: 'left',
+            maxWidth: '90%',
+            overflow: 'hidden',
+            fontSize: '12px',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
           {tokenData.metadata?.parsed.name ||
             tokenData.metaplexData?.parsed.data.name}
         </Text>
+        <Image
+          src={tokenData.metadata?.parsed.image}
+          style={{
+            borderRadius: '6px 6px 0px 0px',
+            width: '100%',
+          }}
+        />
+      </Button>
+
+      <View
+        style={{
+          width: '100%',
+          display: 'inline-flex',
+          borderRadius: '0px 0px 6px 6px',
+          overflow: 'hidden',
+        }}
+      >
         <Button
+          style={{
+            borderRadius: '0px',
+            fontSize: '12px',
+            padding: '4px 6px',
+            width: '100%',
+            height: 'auto',
+          }}
+        >
+          Select
+        </Button>
+        <View
+          style={{
+            background: 'rgba(255,255,255,.3)',
+            height: '100%',
+            width: '2px',
+          }}
+        />
+        <Button
+          style={{
+            borderRadius: '0px',
+            fontSize: '12px',
+            padding: '4px 6px',
+            width: '100%',
+            height: 'auto',
+          }}
           onClick={() => {
             handleStake.mutate({
               tokenDatas: [tokenData],
@@ -50,8 +102,8 @@ export function UnstakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
           {handleStake.isLoading ? (
             <Loading
               style={{
-                height: '25px',
-                width: '25px',
+                height: '20px',
+                width: '20px',
               }}
             />
           ) : (

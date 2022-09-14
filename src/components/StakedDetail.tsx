@@ -2,6 +2,7 @@ import { View, Text, Button, Image, Loading } from 'react-xnft'
 import { useHandleClaimRewards } from '../handlers/useHandleClaimRewards'
 import { useHandleUnstake } from '../handlers/useHandleUnstake'
 import { StakeEntryTokenData } from '../hooks/useStakedTokenDatas'
+import { StakedStats } from './StakedStats'
 
 export function StakedDetail({
   tokenData,
@@ -15,7 +16,7 @@ export function StakedDetail({
       style={{
         width: '100%',
         height: '100%',
-        padding: '10px 25px',
+        padding: '5px 25px',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
@@ -68,9 +69,9 @@ export function StakedDetail({
             {tokenData.metadata?.parsed.description}
           </Text>
         </View>
+        <StakedStats tokenData={tokenData} />
         <View
           style={{
-            marginTop: '10px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

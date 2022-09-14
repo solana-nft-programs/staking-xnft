@@ -18,7 +18,7 @@ export function StakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
           borderRadius: '6px',
           width: '100%',
           height: 'auto',
-          maxWidth: 'calc(100% - 10px)',
+          maxWidth: '100%',
           minHeight: '150px',
           minWidth: '150px',
           position: 'relative',
@@ -60,7 +60,7 @@ export function StakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
         <Image
           src={tokenData.metadata?.parsed.image}
           style={{
-            borderRadius: '6px',
+            borderRadius: '6px 6px 0px 0px',
             width: '100%',
           }}
         />
@@ -68,7 +68,7 @@ export function StakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
 
       <View
         style={{
-          width: 'calc(100% - 12px)',
+          width: '100%',
           display: 'inline-flex',
           borderRadius: '0px 0px 6px 6px',
           overflow: 'hidden',
