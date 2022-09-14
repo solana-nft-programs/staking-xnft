@@ -8,23 +8,19 @@ export function RewardRate({ size = 18 }) {
   const rewardDistributorData = useRewardDistributorData()
   const rewardsRate = useRewardsRate()
   const rewardMintInfo = useRewardMintInfo()
-  if (
-    !rewardsRate.data ||
-    !rewardMintInfo.data ||
-    !rewardDistributorData.data
-  ) {
-    return (
-      <View
-        style={{
-          margin: `0px auto`,
-          borderRadius: '6px',
-          height: `${size * 1.25}px`,
-          width: `${size * 4}px`,
-          backgroundColor: 'rgba(255,255,255,.1)',
-        }}
-      />
-    )
-  }
+  const loading = (
+    <View
+      style={{
+        margin: `0px auto`,
+        borderRadius: '6px',
+        height: `${size * 1.15}px`,
+        width: `${size * 4}px`,
+        backgroundColor: 'rgba(255,255,255,.1)',
+      }}
+    />
+  )
+  if (!rewardDistributorData.isFetched) return loading
+  if (!rewardMintInfo.data || !rewardsRate.data) return loading
   return (
     <View
       style={{

@@ -18,14 +18,14 @@ ReactXnft.render(
   <AnchorDom>
     <EnvironmentProvider defaultCluster="mainnet-beta">
       <UTCNowProvider>
-        <StakePoolMetadataProvider>
-          <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <StakePoolMetadataProvider>
             <>
               <App />
               <ReactQueryDevtools initialIsOpen={false} />
             </>
-          </QueryClientProvider>
-        </StakePoolMetadataProvider>
+          </StakePoolMetadataProvider>
+        </QueryClientProvider>
       </UTCNowProvider>
     </EnvironmentProvider>
   </AnchorDom>

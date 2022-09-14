@@ -1,16 +1,17 @@
 import { View, Text, Button, Image, Loading } from 'react-xnft'
 import { useStakedTokenDatas } from '../hooks/useStakedTokenDatas'
 import { useAllowedTokenDatas } from '../hooks/useAllowedTokenDatas'
+import { StakeToken } from '../components/StakeToken'
+import { UnstakeToken } from '../components/UnstakeToken'
 
 export function StakeUntake() {
   const allowedTokens = useAllowedTokenDatas(true)
-  console.log('-----', allowedTokens)
   const stakedTokenDatas = useStakedTokenDatas()
   return (
     <View style={{ height: '100%' }}>
       <View
         style={{
-          padding: '5px',
+          padding: '5px 10px',
           width: '100%',
           height: '100%',
         }}
@@ -126,6 +127,11 @@ export function StakeUntake() {
               </View>
             </View>
           </View>
+        ) : allowedTokens.data?.length === 0 &&
+          stakedTokenDatas.data?.length === 0 ? (
+          <View style={{ textAlign: 'center', margin: '20px', opacity: '.5' }}>
+            <Text>No tokens found</Text>
+          </View>
         ) : (
           <View
             style={{
@@ -136,78 +142,12 @@ export function StakeUntake() {
               justifyContent: 'space-between',
             }}
           >
-            {allowedTokens.data?.map((tokenData) => {
-              return (
-                <View
-                  style={{
-                    padding: '5px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Image
-                    src={tokenData.metadata?.parsed.image}
-                    style={{
-                      borderRadius: '6px',
-                      maxWidth: 'calc(100% - 10px)',
-                      minHeight: '150px',
-                      minWidth: '150px',
-                    }}
-                  />
-                  <View
-                    style={{
-                      marginTop: '3px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '5px',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Text>{tokenData.metaplexData?.parsed.data.name}</Text>
-                    <Button>Unstake</Button>
-                  </View>
-                </View>
-              )
-            })}
-            {stakedTokenDatas.data?.map((tokenData) => {
-              return (
-                <View
-                  style={{
-                    padding: '5px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Image
-                    src={tokenData.metadata?.parsed.image}
-                    style={{
-                      borderRadius: '6px',
-                      maxWidth: 'calc(100% - 10px)',
-                      minHeight: '150px',
-                      minWidth: '150px',
-                    }}
-                  />
-                  <View
-                    style={{
-                      marginTop: '3px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '5px',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Text>{tokenData.metaplexData?.parsed.data.name}</Text>
-                    <Button>Unstake</Button>
-                  </View>
-                </View>
-              )
-            })}
+            {allowedTokens.data?.map((tokenData) => (
+              <StakeToken tokenData={tokenData} />
+            ))}
+            {stakedTokenDatas.data?.map((tokenData) => (
+              <UnstakeToken tokenData={tokenData} />
+            ))}
           </View>
         )}
       </View>

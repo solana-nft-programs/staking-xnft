@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query'
 import React, { useContext, useState } from 'react'
 import { StakePoolMetadata } from '../config/config'
 
@@ -14,13 +15,16 @@ export function StakePoolMetadataProvider({
 }: {
   children: React.ReactChild
 }) {
+  const queryClient = useQueryClient()
   const [stakePoolMetadata, setStakePoolMetadata] =
     useState<StakePoolMetadata | null>(null)
   return (
     <EnvironmentContext.Provider
       value={{
         stakePoolMetadata,
-        setStakePoolMetadata,
+        setStakePoolMetadata: (x) => {
+          queryClient.removeQueries(), setStakePoolMetadata(x)
+        },
       }}
     >
       {children}

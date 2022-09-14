@@ -40,6 +40,7 @@ export const useRewardEntries = () => {
       return (
         await getRewardEntries(secondaryConnection, rewardEntryIds)
       ).filter((rewardEntry) => rewardEntry.parsed)
-    }
+    },
+    { enabled: !!rewardDistibutorData && !!stakedTokenDatas }
   )
 }

@@ -19,15 +19,12 @@ export const useRewards = () => {
   const { data: rewardMintInfo } = useRewardMintInfo()
   const { UTCNow } = useUTCNow()
 
-  return useQuery<
-    | {
-        rewardMap: {
-          [stakeEntryId: string]: { claimableRewards: BN; nextRewardsIn: BN }
-        }
-        claimableRewards: BN
-      }
-    | undefined
-  >(
+  return useQuery<{
+    rewardMap: {
+      [stakeEntryId: string]: { claimableRewards: BN; nextRewardsIn: BN }
+    }
+    claimableRewards: BN
+  }>(
     [
       'useRewards',
       rewardDistributorData?.pubkey?.toString(),
