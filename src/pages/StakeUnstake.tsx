@@ -1,12 +1,40 @@
-import { View, Text, Button, Image, Loading } from 'react-xnft'
-import { useStakedTokenDatas } from '../hooks/useStakedTokenDatas'
-import { useAllowedTokenDatas } from '../hooks/useAllowedTokenDatas'
+import { View, Text, Loading } from 'react-xnft'
+import {
+  StakeEntryTokenData,
+  useStakedTokenDatas,
+} from '../hooks/useStakedTokenDatas'
+import {
+  AllowedTokenData,
+  useAllowedTokenDatas,
+} from '../hooks/useAllowedTokenDatas'
 import { UnstakedToken } from '../components/UnstakedToken'
 import { StakedToken } from '../components/StakedToken'
+import { useEffect, useMemo, useState } from 'react'
+import { StakeDrawer } from '../components/StakeDrawer'
+import { UnstakeDrawer } from '../components/UnstakeDrawer'
+
+export function tokenId(tokenData: AllowedTokenData | StakeEntryTokenData) {
+  return tokenData.metaplexData?.parsed.mint.toString() ?? ''
+}
 
 export function StakeUntake() {
+  const [selectedStakedTokens, setSelectedStakedTokens] = useState<
+    StakeEntryTokenData[]
+  >([])
+  const [selectedUnstakedTokens, setSelectedUnstakedTokens] = useState<
+    AllowedTokenData[]
+  >([])
   const allowedTokens = useAllowedTokenDatas(true)
   const stakedTokenDatas = useStakedTokenDatas()
+
+  useMemo(() => {
+    setSelectedUnstakedTokens([])
+  }, [allowedTokens.data?.map((t) => tokenId(t)).join(',')])
+
+  useMemo(() => {
+    setSelectedStakedTokens([])
+  }, [stakedTokenDatas.data?.map((t) => tokenId(t)).join(',')])
+
   return (
     <View style={{ height: '100%' }}>
       <View
@@ -143,14 +171,54 @@ export function StakeUntake() {
             }}
           >
             {allowedTokens.data?.map((tokenData) => (
-              <UnstakedToken tokenData={tokenData} />
+              <UnstakedToken
+                tokenData={tokenData}
+                isSelected={selectedUnstakedTokens.some(
+                  (s) => tokenId(s) === tokenId(tokenData)
+                )}
+                select={(tokenData) => {
+                  setSelectedStakedTokens([])
+                  setSelectedUnstakedTokens((selected) =>
+                    selected.some((t) => tokenId(t) === tokenId(tokenData))
+                      ? selected.filter(
+                          (t) => tokenId(t) !== tokenId(tokenData)
+                        )
+                      : [...selected, tokenData]
+                  )
+                }}
+              />
             ))}
             {stakedTokenDatas.data?.map((tokenData) => (
-              <StakedToken tokenData={tokenData} />
+              <StakedToken
+                tokenData={tokenData}
+                isSelected={selectedStakedTokens.some(
+                  (s) => tokenId(s) === tokenId(tokenData)
+                )}
+                select={(tokenData) => {
+                  setSelectedUnstakedTokens([])
+                  setSelectedStakedTokens((selected) =>
+                    selected.some((t) => tokenId(t) === tokenId(tokenData))
+                      ? selected.filter(
+                          (t) => tokenId(t) !== tokenId(tokenData)
+                        )
+                      : [...selected, tokenData]
+                  )
+                }}
+              />
             ))}
           </View>
         )}
       </View>
+      <StakeDrawer
+        selectedTokens={selectedUnstakedTokens}
+        cancel={() => setSelectedUnstakedTokens([])}
+        selectAll={() => setSelectedUnstakedTokens(allowedTokens.data ?? [])}
+      />
+      <UnstakeDrawer
+        selectedTokens={selectedStakedTokens}
+        cancel={() => setSelectedStakedTokens([])}
+        selectAll={() => setSelectedStakedTokens(stakedTokenDatas.data ?? [])}
+      />
     </View>
   )
 }

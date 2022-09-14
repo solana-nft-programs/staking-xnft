@@ -30,7 +30,7 @@ export function Pool({
                   <Tab.Icon
                     element={
                       <View>
-                        <Text>Claim</Text>
+                        <Text>Stake</Text>
                       </View>
                     }
                   />
@@ -40,7 +40,7 @@ export function Pool({
                   <Tab.Icon
                     element={
                       <View>
-                        <Text>Stake</Text>
+                        <Text>Claim</Text>
                       </View>
                     }
                   />

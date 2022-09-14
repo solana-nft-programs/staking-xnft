@@ -1,21 +1,31 @@
 import { View, Text, Button, Image, useNavigation } from 'react-xnft'
-import { AllowedTokenData } from '../hooks/useAllowedTokenDatas'
+import { StakeEntryTokenData } from '../hooks/useStakedTokenDatas'
 
-export function StakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
+export function StakedToken({
+  tokenData,
+  isSelected,
+  select,
+}: {
+  tokenData: StakeEntryTokenData
+  isSelected: boolean
+  select: (tokenData: StakeEntryTokenData) => void
+}) {
   const nav = useNavigation()
   return (
     <View
       style={{
         padding: '5px',
+        borderRadius: '6px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
+        border: `1px solid ${isSelected ? '#4e9cdc' : 'transparent'}`,
       }}
     >
       <Button
         style={{
-          borderRadius: '6px',
+          borderRadius: '6px 6px 0px 0px',
           width: '100%',
           height: 'auto',
           maxWidth: '100%',
@@ -81,9 +91,11 @@ export function StakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
             padding: '4px 6px',
             width: '100%',
             height: 'auto',
+            background: isSelected ? '#4e9cdc' : 'rgb(39 39 42)',
           }}
+          onClick={() => select(tokenData)}
         >
-          Select
+          {isSelected ? 'Deselect' : 'Select'}
         </Button>
         <View
           style={{

@@ -3,7 +3,15 @@ import { AllowedTokenData } from '../hooks/useAllowedTokenDatas'
 import { useHandleStake } from '../handlers/useHandleStake'
 import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
 
-export function UnstakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
+export function UnstakedToken({
+  tokenData,
+  isSelected,
+  select,
+}: {
+  tokenData: AllowedTokenData
+  isSelected: boolean
+  select: (tokenData: AllowedTokenData) => void
+}) {
   const { stakePoolMetadata } = useStakePoolMetadata()
   const handleStake = useHandleStake()
   const nav = useNavigation()
@@ -11,15 +19,17 @@ export function UnstakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
     <View
       style={{
         padding: '5px',
+        borderRadius: '6px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
+        border: `1px solid ${isSelected ? '#4e9cdc' : 'transparent'}`,
       }}
     >
       <Button
         style={{
-          borderRadius: '6px',
+          borderRadius: '6px 6px 0px 0px',
           width: '100%',
           height: 'auto',
           maxWidth: '100%',
@@ -28,7 +38,7 @@ export function UnstakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
           position: 'relative',
           padding: '0px',
         }}
-        onClick={() => nav.push('stake-detail', { tokenData })}
+        onClick={() => select(tokenData)}
       >
         <Text
           style={{
@@ -73,9 +83,11 @@ export function UnstakedToken({ tokenData }: { tokenData: AllowedTokenData }) {
             padding: '4px 6px',
             width: '100%',
             height: 'auto',
+            background: isSelected ? '#4e9cdc' : 'rgb(39 39 42)',
           }}
+          onClick={() => select(tokenData)}
         >
-          Select
+          {isSelected ? 'Deselect' : 'Select'}
         </Button>
         <View
           style={{
