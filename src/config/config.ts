@@ -363,7 +363,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     ),
     hidden: true,
     receiptType: ReceiptType.Original,
-    imageUrl: '/logos/whales.jpg',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/whales.jpg',
     colors: {
       primary: '#2472d1',
       secondary: '#eee',
@@ -462,7 +463,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     receiptType: ReceiptType.Original,
     hostname: 'stake.roguesharks',
     maxStaked: 4991, // update with collection size
-    imageUrl: '/logos/rogue-sharks.svg',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/rogue-sharks.svg',
     tokenStandard: TokenStandard.NonFungible,
     hideAllowedTokens: true,
     styles: {
@@ -603,7 +605,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     ),
     websiteUrl: 'https://www.skatex.io/',
     receiptType: ReceiptType.Original,
-    imageUrl: '/logos/skatex-logo.png',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/skatex-logo.png',
     maxStaked: 1080,
     styles: {
       fontFamily: 'Industry, sans-serif',
@@ -624,7 +627,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     ),
     websiteUrl: 'https://www.skatex.io/',
     receiptType: ReceiptType.Original,
-    imageUrl: '/logos/skatex-logo.png',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/skatex-logo.png',
     maxStaked: 2222,
     styles: {
       fontFamily: 'Industry, sans-serif',
@@ -645,7 +649,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     ),
     websiteUrl: 'https://www.skatex.io/',
     receiptType: ReceiptType.Original,
-    imageUrl: '/logos/skatex-logo.png',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/skatex-logo.png',
     styles: {
       fontFamily: 'Industry, sans-serif',
       fontWeight: 500,
@@ -676,7 +681,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     maxStaked: 1100,
     websiteUrl: 'https://pinclub.io/',
     receiptType: ReceiptType.Original,
-    imageUrl: '/logos/reverb.png',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/reverb.png',
     colors: {
       primary: '#394b5a',
       secondary: '#6e989d',
@@ -884,7 +890,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://trustinpat.com/',
     receiptType: ReceiptType.Receipt,
     tokenStandard: TokenStandard.NonFungible,
-    imageUrl: '/logos/trust-in-pat.png',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/trust-in-pat.png',
     maxStaked: 4096,
     links: [
       {
@@ -990,8 +997,10 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://www.rebellionbots.io',
     receiptType: ReceiptType.Original,
     maxStaked: 801, // update with collection size
-    imageUrl: '/logos/rebellion-bots.jpeg',
-    secondaryImageUrl: '/logos/secondary-rebellion-bots.png',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/rebellion-bots.jpeg',
+    secondaryImageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/secondary-rebellion-bots.png',
     tokenStandard: TokenStandard.NonFungible,
     hideAllowedTokens: true,
     styles: {
@@ -1015,7 +1024,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://www.sentries.io/',
     receiptType: ReceiptType.Original,
     maxStaked: 8000, // update with collection size
-    imageUrl: '/logos/sentries-logo.svg',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/sentries-logo.svg',
     tokenStandard: TokenStandard.NonFungible,
     colors: {
       primary: '#383838',
@@ -1079,8 +1089,10 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     hideAllowedTokens: true,
     nameInHeader: true,
     maxStaked: 7777,
-    imageUrl: '/logos/parcl.png',
-    backgroundImage: '/logos/parcl-bg.png',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl.png',
+    backgroundImage:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
     colors: {
       primary: '#0d1939',
       secondary: '#10abf0',

@@ -8,12 +8,8 @@ export function iWallet(publicKey: PublicKey) {
       return tx
     },
     signAllTransactions: async (txs: Transaction[]) => {
-      console.log('11111111', txs)
-      if (txs.length > 1) {
-        throw 'Error'
-      }
       // @ts-ignore
-      await window.xnft.signTransaction(txs[0])
+      await window.xnft.signAllTransactions(txs)
       return txs
     },
     publicKey: publicKey,

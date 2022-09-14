@@ -19,12 +19,15 @@ export const useRewards = () => {
   const { data: rewardMintInfo } = useRewardMintInfo()
   const { UTCNow } = useUTCNow()
 
-  return useQuery<{
-    rewardMap: {
-      [stakeEntryId: string]: { claimableRewards: BN; nextRewardsIn: BN }
-    }
-    claimableRewards: BN
-  }>(
+  return useQuery<
+    | {
+        rewardMap: {
+          [stakeEntryId: string]: { claimableRewards: BN; nextRewardsIn: BN }
+        }
+        claimableRewards: BN
+      }
+    | undefined
+  >(
     [
       'useRewards',
       rewardDistributorData?.pubkey?.toString(),
@@ -43,7 +46,7 @@ export const useRewards = () => {
             !!rewardDistributorTokenAccount)
         )
       ) {
-        return { rewardMap: {}, claimableRewards: new BN(0) }
+        return undefined
       }
 
       const stakeEntries = stakedTokenDatas
