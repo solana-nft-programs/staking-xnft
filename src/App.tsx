@@ -1,5 +1,6 @@
 import ReactXnft, { Stack } from 'react-xnft'
 import { StakedDetail } from './components/StakedDetail'
+import { Text } from './common/Text'
 import { Home } from './pages/Home'
 import { Pool } from './pages/Pool'
 
@@ -15,21 +16,25 @@ export function App() {
     <Stack.Navigator
       style={{}}
       initialRoute={{ name: 'home' }}
+      // @ts-ignore
       options={({ route }) => {
         switch (route.name) {
           case 'home':
             return {
-              title: 'Select Pool',
+              title: <Text>Select Pool</Text>,
             }
           case 'pool':
             return {
-              title: route.props.stakePoolMetadata.displayName,
+              title: <Text>{route.props.stakePoolMetadata.displayName}</Text>,
             }
           case 'stake-detail':
             return {
-              title:
-                route.props.tokenData.metadata?.parsed.name ||
-                route.props.tokenData.metaplexData?.parsed.data.name,
+              title: (
+                <Text>
+                  {route.props.tokenData.metadata?.parsed.name ||
+                    route.props.tokenData.metaplexData?.parsed.data.name}
+                </Text>
+              ),
             }
           default:
             throw new Error(`Unknown route: ${route.name}`)

@@ -1,4 +1,6 @@
-import { View, Text, Button, Image, Loading } from 'react-xnft'
+import { View, Image, Loading } from 'react-xnft'
+import { Button } from '../common/Button'
+import { Text } from '../common/Text'
 import { useHandleClaimRewards } from '../handlers/useHandleClaimRewards'
 import { useHandleUnstake } from '../handlers/useHandleUnstake'
 import { StakeEntryTokenData } from '../hooks/useStakedTokenDatas'
@@ -75,7 +77,7 @@ export function StakedDetail({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: '10px',
+            borderRadius: '8px',
             overflow: 'hidden',
           }}
         >

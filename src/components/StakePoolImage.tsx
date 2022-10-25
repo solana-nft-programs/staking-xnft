@@ -1,21 +1,28 @@
 import { CSSProperties } from 'react'
-import { Text, View } from 'react-xnft'
-import { StakePoolMetadata } from '../config/config'
+import { Text, useMetadata, View } from 'react-xnft'
+import { dark4 } from '../config/colors'
+import { StakePool, stakePoolDisplayName } from '../hooks/useAllStakePools'
 
 export function StakePoolImage({
   width = 50,
   style,
-  stakePoolMetadata,
+  stakePool,
 }: {
   width?: number
   style?: CSSProperties
-  stakePoolMetadata?: StakePoolMetadata | null
+  stakePool: StakePool
 }) {
+  const { stakePoolMetadata } = stakePool
+  const { isDarkMode } = useMetadata()
   return stakePoolMetadata?.imageUrl &&
     stakePoolMetadata.imageUrl.includes('https') ? (
     <View
       style={{
-        backgroundImage: `url("${stakePoolMetadata.imageUrl}")`,
+        backgroundColor:
+          ((stakePoolMetadata.darkBg && isDarkMode) ||
+            (stakePoolMetadata.lightBg && !isDarkMode)) &&
+          dark4(isDarkMode),
+        padding: stakePoolMetadata.logoPadding && '5px',
         borderRadius: '6px',
         maxWidth: `${width}px`,
         width: '100%',
@@ -23,9 +30,21 @@ export function StakePoolImage({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '0% 50%',
         height: '100%',
+        overflow: 'hidden',
         ...style,
       }}
-    />
+    >
+      <View
+        style={{
+          backgroundImage: `url("${stakePoolMetadata.imageUrl}")`,
+          width: '100%',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: '0% 50%',
+          height: '100%',
+        }}
+      />
+    </View>
   ) : (
     <View
       style={{
@@ -44,7 +63,7 @@ export function StakePoolImage({
           fontSize: `${0.5 * width}px`,
         }}
       >
-        {stakePoolMetadata?.displayName.slice(0, 1)}
+        {stakePoolDisplayName(stakePool).slice(0, 1)}
       </Text>
     </View>
   )

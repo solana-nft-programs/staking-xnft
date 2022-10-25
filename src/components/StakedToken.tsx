@@ -1,4 +1,7 @@
-import { View, Text, Button, Image, useNavigation } from 'react-xnft'
+import { View, Image, useNavigation, useMetadata } from 'react-xnft'
+import { Button } from '../common/Button'
+import { Text } from '../common/Text'
+import { dark3, overlayBg } from '../config/colors'
 import { StakeEntryTokenData } from '../hooks/useStakedTokenDatas'
 
 export function StakedToken({
@@ -11,10 +14,11 @@ export function StakedToken({
   select: (tokenData: StakeEntryTokenData) => void
 }) {
   const nav = useNavigation()
+  const { isDarkMode } = useMetadata()
   return (
     <View
       style={{
-        padding: '5px',
+        padding: '0px 0px 0px 0px',
         borderRadius: '6px',
         display: 'flex',
         justifyContent: 'center',
@@ -41,7 +45,7 @@ export function StakedToken({
             position: 'absolute',
             bottom: '3px',
             right: '3px',
-            background: 'rgba(0, 0, 0, 0.7)',
+            background: overlayBg(isDarkMode),
             borderRadius: '6px',
             padding: '4px 6px',
           }}
@@ -50,7 +54,7 @@ export function StakedToken({
         </View>
         <Text
           style={{
-            background: 'rgba(0, 0, 0, 0.7)',
+            background: overlayBg(isDarkMode),
             borderRadius: '6px',
             padding: '4px 6px',
             position: 'absolute',
@@ -91,7 +95,7 @@ export function StakedToken({
             padding: '4px 6px',
             width: '100%',
             height: 'auto',
-            background: isSelected ? '#4e9cdc' : 'rgb(39 39 42)',
+            background: isSelected ? '#4e9cdc' : dark3(isDarkMode),
           }}
           onClick={() => select(tokenData)}
         >

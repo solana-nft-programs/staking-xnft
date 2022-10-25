@@ -5,7 +5,7 @@ import { executeAllTransactions } from '../utils/transactions'
 import { useEnvironmentCtx } from '../providers/EnvironmentProvider'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AllowedTokenData } from '../hooks/useAllowedTokenDatas'
-import { usePublicKey } from 'react-xnft'
+import { useConnection, usePublicKey } from 'react-xnft'
 import { iWallet } from '../utils/wallet'
 import { useRewardDistributorData } from '../hooks/useRewardDistributorData'
 import { withFindOrInitAssociatedTokenAccount } from '@cardinal/common'
@@ -14,6 +14,7 @@ import { useStakePoolData } from '../hooks/useStakePoolData'
 export const useHandleClaimRewards = () => {
   const walletId = usePublicKey()
   const wallet = iWallet(walletId)
+  const conn = useConnection()
   const { connection } = useEnvironmentCtx()
   const queryClient = useQueryClient()
   const { data: stakePool } = useStakePoolData()
@@ -89,6 +90,9 @@ export const useHandleClaimRewards = () => {
     {
       onSuccess: () => {
         queryClient.resetQueries()
+      },
+      onError: (e) => {
+        console.log(`[staking-error] ${e}`)
       },
     }
   )

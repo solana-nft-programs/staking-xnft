@@ -1,7 +1,16 @@
-import { View, Text, Button, Image, Loading, useNavigation } from 'react-xnft'
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  Loading,
+  useNavigation,
+  useMetadata,
+} from 'react-xnft'
 import { AllowedTokenData } from '../hooks/useAllowedTokenDatas'
 import { useHandleStake } from '../handlers/useHandleStake'
 import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
+import { overlayBg } from '../config/colors'
 
 export function UnstakedToken({
   tokenData,
@@ -14,7 +23,7 @@ export function UnstakedToken({
 }) {
   const { stakePoolMetadata } = useStakePoolMetadata()
   const handleStake = useHandleStake()
-  const nav = useNavigation()
+  const { isDarkMode } = useMetadata()
   return (
     <View
       style={{
@@ -42,7 +51,7 @@ export function UnstakedToken({
       >
         <Text
           style={{
-            background: 'rgba(0, 0, 0, 0.7)',
+            background: overlayBg(isDarkMode),
             borderRadius: '6px',
             padding: '4px 6px',
             position: 'absolute',

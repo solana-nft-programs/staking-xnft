@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { Tab, Text, View } from 'react-xnft'
+import { Tab, useMetadata, View } from 'react-xnft'
+import { Text } from '../common/Text'
 import { StakePoolMetadata } from '../config/config'
 import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
 import { ClaimRewards } from './ClaimRewards'
@@ -11,6 +12,7 @@ export function Pool({
   stakePoolMetadata: StakePoolMetadata
 }) {
   const { setStakePoolMetadata } = useStakePoolMetadata()
+  const theme = useMetadata()
   useEffect(() => {
     if (stakePoolMetadata) {
       setStakePoolMetadata(stakePoolMetadata)
@@ -22,8 +24,12 @@ export function Pool({
         style={{}}
         options={({ route }) => {
           return {
+            tabBarStyle: {
+              background: theme.isDarkMode ? '#333' : '#CCC',
+              cursor: 'pointer',
+            },
             tabBarActiveTintColor: '#401a2f',
-            tabBarInactiveTintColor: '#111',
+            tabBarInactiveTintColor: theme.isDarkMode ? '#111' : '#EEE',
             tabBarIcon: () => {
               if (route.name === 'stake') {
                 return (

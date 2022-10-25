@@ -52,8 +52,10 @@ export type StakePoolMetadata = {
   hideAllowedTokens?: boolean
   // styles to apply to the whole stake pool
   styles?: CSSProperties
-  // Contrast homepage background
-  contrastHomepageBkg?: boolean
+  // Contrast dark background
+  darkBg?: boolean
+  // Contrast light background
+  lightBg?: boolean
   // Colors object to style the stake page
   colors?: {
     primary: string
@@ -109,7 +111,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     ),
     description: 'Portals staking pool provided by The BuildersDAO.',
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/portals-nft.jpg',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/portals-nft.jpg?raw=true',
     colors: {
       primary: '#0d1718',
       secondary: '#416460',
@@ -126,7 +128,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     description:
       'The New Explorers Club staking pool provided by The BuildersDAO.',
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/tnec-nft.jpg',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/tnec-nft.jpg?raw=true',
     colors: {
       primary: '#000000',
       secondary: '#6c9180',
@@ -142,7 +144,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     ),
     description: 'The BuildersDAO is a community of metaverse builders.',
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/buildersdao-nft.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/buildersdao-nft.png?raw=true',
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
@@ -216,7 +218,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       'DgrtWV95DP3ix4GFMKDLwqMNZ213KJk9NgM6vmdPtyk1'
     ),
-    contrastHomepageBkg: true,
+    darkBg: true,
     maxStaked: 5000,
     receiptType: ReceiptType.Original,
     websiteUrl: 'https://www.bithq.co/',
@@ -249,6 +251,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     redirect: 'https://frame.artofmob.io',
     hidden: false,
     notFound: true,
+    maxStaked: 10000,
     imageUrl:
       'https://pvajcmufckbozjicyp4aaltlbozv7emcj3sy6srskjm4ilq.arweave.net/fUCRM-oUSguylAsP4AC5r_C7NfkYJ_O5Y_9KMlJZxC4?ext=png',
   },
@@ -258,12 +261,13 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       '3BZCupFU6X3wYJwgTsKS2vTs4VeMrhSZgx4P2TfzExtP'
     ),
+    lightBg: true,
     logoPadding: true,
     description:
       'Blockasset is creating a revolutionary way for fans and athletes to interact and connect with each other by way of multiple touchpoints that provide benefits for both the fan and the athlete.',
     websiteUrl: 'https://hub.blockasset.co/nft-staking-v2',
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/blockasset.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/blockasset.png?raw=true',
     maxStaked: 11791,
     links: [
       {
@@ -292,10 +296,12 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       'Bce4Aq4YheBo5hENeoMhjywdvMhEMc8sUh21S87Qv4q6'
     ),
+    lightBg: true,
+    logoPadding: true,
     websiteUrl: 'https://hub.blockasset.co/smesh-staking',
     receiptType: ReceiptType.Original,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/blockasset.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/blockasset.png?raw=true',
     maxStaked: 4000,
     links: [
       {
@@ -324,9 +330,11 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       'jhksrHQqRKBEFuker9buKw4zDDrmENGTTKnUn2QzsUD'
     ),
+    lightBg: true,
+    logoPadding: true,
     websiteUrl: 'https://hub.blockasset.co/token-staking-v2',
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/blockasset.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/blockasset.png?raw=true',
     links: [
       {
         text: 'NFT Staking',
@@ -354,6 +362,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       'FP9BRAohGJDximSTa9HR3UNCd9KA5QUApyctMpASrsJp'
     ),
+    lightBg: true,
     websiteUrl: 'https://metaopsgaming.com/',
     receiptType: ReceiptType.Original,
     imageUrl:
@@ -378,6 +387,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       'BeunK2rKRNXbL6YsMkKDPD4f24Ms4dcj2JpsN6KCjBjY'
     ),
+    lightBg: true,
     websiteUrl: 'https://metaopsgaming.com/',
     receiptType: ReceiptType.Original,
     imageUrl:
@@ -524,7 +534,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     ),
     receiptType: ReceiptType.Original,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/whales.jpg',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/whales.jpg?raw=true',
     colors: {
       primary: '#2472d1',
       secondary: '#eee',
@@ -622,11 +632,11 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://www.roguesharks.org/',
     receiptType: ReceiptType.Original,
     hostname: 'stake.roguesharks',
-    contrastHomepageBkg: true,
+    darkBg: true,
     hideFooter: true,
     maxStaked: 4991, // update with collection size
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/rogue-sharks.svg',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/rogue-sharks.svg?raw=true',
     tokenStandard: TokenStandard.NonFungible,
     hideAllowedTokens: true,
     styles: {
@@ -684,6 +694,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'http://www.degengod.xyz/',
     receiptType: ReceiptType.Original,
     maxStaked: 1112,
+    lightBg: true,
     imageUrl:
       'https://raw.githubusercontent.com/DegenGodnft/degen/main/Logo2.png',
     colors: {
@@ -703,6 +714,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     receiptType: ReceiptType.Original,
     imageUrl: 'https://www.00rr0r.com/logo-stake.png',
     maxStaked: 4999,
+    lightBg: true,
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
@@ -772,7 +784,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://www.skatex.io/',
     receiptType: ReceiptType.Original,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/skatex-logo.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/skatex-logo.png?raw=true',
     maxStaked: 1080,
     styles: {
       fontFamily: 'Industry, sans-serif',
@@ -794,7 +806,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://www.skatex.io/',
     receiptType: ReceiptType.Original,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/skatex-logo.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/skatex-logo.png?raw=true',
     maxStaked: 2222,
     styles: {
       fontFamily: 'Industry, sans-serif',
@@ -816,7 +828,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://www.skatex.io/',
     receiptType: ReceiptType.Original,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/skatex-logo.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/skatex-logo.png?raw=true',
     styles: {
       fontFamily: 'Industry, sans-serif',
       fontWeight: 500,
@@ -848,7 +860,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://pinclub.io/',
     receiptType: ReceiptType.Original,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/reverb.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/reverb.png?raw=true',
     colors: {
       primary: '#394b5a',
       secondary: '#6e989d',
@@ -1024,6 +1036,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     receiptType: ReceiptType.Original,
     hostname: 'stake.1space.me',
     hideFooter: true,
+    logoPadding: true,
+    lightBg: true,
     imageUrl: 'https://1space.me/images/os-logo-white.jpeg',
     maxStaked: 300,
     links: [
@@ -1058,7 +1072,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     receiptType: ReceiptType.Receipt,
     tokenStandard: TokenStandard.NonFungible,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/trust-in-pat.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/trust-in-pat.png?raw=true',
     maxStaked: 4096,
     links: [
       {
@@ -1166,9 +1180,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     receiptType: ReceiptType.Original,
     maxStaked: 1205, // update with collection size
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/rebellion-bots.jpeg',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/rebellion-bots.jpeg?raw=true',
     secondaryImageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/secondary-rebellion-bots.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/secondary-rebellion-bots.png?raw=true',
     tokenStandard: TokenStandard.NonFungible,
     hideAllowedTokens: true,
     styles: {
@@ -1191,9 +1205,10 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     ),
     websiteUrl: 'https://www.sentries.io/',
     receiptType: ReceiptType.Original,
+    lightBg: true,
     maxStaked: 8000, // update with collection size
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/sentries-logo.svg',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/sentries-logo.svg?raw=true',
     tokenStandard: TokenStandard.NonFungible,
     colors: {
       primary: '#383838',
@@ -1212,6 +1227,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     styles: {
       fontFamily: 'Multivac Interference',
     },
+    lightBg: true,
     colors: {
       primary: '#000',
       secondary: '#34c674',
@@ -1233,6 +1249,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       '2f3Sdr7hgf3RnJMxKW8oYgmKRRkD8eaVGeDZyprUstM6'
     ),
+    lightBg: true,
     websiteUrl: 'https://www.dragonslayerz.io/',
     receiptType: ReceiptType.Original,
     maxStaked: 4332,
@@ -1250,6 +1267,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       '3JXoAsm4YZGzC2VGtSBdN8EX36wW8uuoXX9nWFqamUu2'
     ),
+    lightBg: true,
     websiteUrl: 'https://www.hoa.house/',
     receiptType: ReceiptType.Original,
     tokenStandard: TokenStandard.NonFungible,
@@ -1257,9 +1275,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     nameInHeader: true,
     maxStaked: 7777,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl.png?raw=true',
     backgroundImage:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-bg.png?raw=true',
     colors: {
       primary: '#0d1939',
       secondary: '#10abf0',
@@ -1278,9 +1296,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     hideAllowedTokens: true,
     nameInHeader: true,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-san-francisco.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-san-francisco.png?raw=true',
     backgroundImage:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-bg.png?raw=true',
     colors: {
       primary: '#0d1939',
       secondary: '#10abf0',
@@ -1325,9 +1343,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     hideAllowedTokens: true,
     nameInHeader: true,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-miami.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-miami.png?raw=true',
     backgroundImage:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-bg.png?raw=true',
     colors: {
       primary: '#0d1939',
       secondary: '#10abf0',
@@ -1372,9 +1390,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     hideAllowedTokens: true,
     nameInHeader: true,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-los-angeles.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-los-angeles.png?raw=true',
     backgroundImage:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-bg.png?raw=true',
     colors: {
       primary: '#0d1939',
       secondary: '#10abf0',
@@ -1419,9 +1437,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     hideAllowedTokens: true,
     nameInHeader: true,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-manhattan.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-manhattan.png?raw=true',
     backgroundImage:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-bg.png?raw=true',
     colors: {
       primary: '#0d1939',
       secondary: '#10abf0',
@@ -1467,9 +1485,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     hideAllowedTokens: true,
     nameInHeader: true,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-brooklyn.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-brooklyn.png?raw=true',
     backgroundImage:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-bg.png?raw=true',
     colors: {
       primary: '#0d1939',
       secondary: '#10abf0',
@@ -1514,9 +1532,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     hideAllowedTokens: true,
     nameInHeader: true,
     imageUrl:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-phoenix.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-phoenix.png?raw=true',
     backgroundImage:
-      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/blob/main/assets/logos/parcl-bg.png?raw=true',
     colors: {
       primary: '#0d1939',
       secondary: '#10abf0',
@@ -1556,6 +1574,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       '2AbgA81PK3E5k6n7yfhp3k6jUE1tMXdSGWsCT17uGpUc'
     ),
+    lightBg: true,
     websiteUrl: 'https://thesuites.app/',
     receiptType: ReceiptType.Original,
     tokenStandard: TokenStandard.NonFungible,
@@ -1583,6 +1602,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     name: 'meta-hunters',
     displayName: 'Meta Hunters',
     nameInHeader: true,
+    maxStaked: 5600,
     stakePoolAddress: new PublicKey(
       'AjuWPVKFZBLZSSJS2xso9zBsfKSzXt14ebEMH6DbAAKg'
     ),
@@ -1617,6 +1637,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://warp.moonshinelabs.io/caps',
     receiptType: ReceiptType.Original,
     tokenStandard: TokenStandard.NonFungible,
+    lightBg: true,
     imageUrl:
       'https://www.arweave.net/IoihJxVlVjKp2x46GpnoQNi1pRWNJiLBI4FQiXK0SPA?ext=png',
     maxStaked: 4996,
@@ -1896,7 +1917,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       '5n9G7o9ZZFmfx4dcbd4HgNYcGWFiQ2wGKaKHYT8bWDf7'
     ),
-    contrastHomepageBkg: true,
+    darkBg: true,
     maxStaked: 2222,
     receiptType: ReceiptType.Original,
     websiteUrl: 'https://steamland.io',
@@ -2052,7 +2073,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       'APhntuf48ME176zvV3feCo9pN5mQuXqQFsC2gBiBw895'
     ),
-    contrastHomepageBkg: true,
+    darkBg: true,
     maxStaked: 3333,
     links: [
       {

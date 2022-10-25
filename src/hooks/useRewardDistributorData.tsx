@@ -9,17 +9,14 @@ import { useStakePoolId } from './useStakePoolId'
 
 export const useRewardDistributorData = () => {
   const stakePoolId = useStakePoolId()
-  const { secondaryConnection } = useEnvironmentCtx()
+  const { connection } = useEnvironmentCtx()
   return useQuery<AccountData<RewardDistributorData> | undefined>(
     ['useRewardDistributorData', stakePoolId?.toString()],
     async () => {
       if (!stakePoolId) return
       const [rewardDistributorId] = await findRewardDistributorId(stakePoolId)
-      return await getRewardDistributor(
-        secondaryConnection,
-        rewardDistributorId
-      )
+      return getRewardDistributor(connection, rewardDistributorId)
     },
-    { enabled: !!stakePoolId }
+    { enabled: !!stakePoolId, retry: false }
   )
 }

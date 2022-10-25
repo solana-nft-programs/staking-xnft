@@ -3,23 +3,31 @@ import { useRewardDistributorData } from '../hooks/useRewardDistributorData'
 import { useRewardMintInfo } from '../hooks/useRewardMintInfo'
 import { useRewardsRate } from '../hooks/useRewardsRate'
 import { formatAmountAsDecimal } from '../common/units'
+import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
+import { TotalStaked } from './TotalStaked'
+import { Loading } from '../common/Loading'
 
 export function RewardRate({ size = 18 }) {
   const rewardDistributorData = useRewardDistributorData()
   const rewardsRate = useRewardsRate()
   const rewardMintInfo = useRewardMintInfo()
-  const loading = (
-    <View
-      style={{
-        margin: `0px auto`,
-        borderRadius: '6px',
-        height: `${size * 1.15}px`,
-        width: `${size * 4}px`,
-        backgroundColor: 'rgba(255,255,255,.1)',
-      }}
-    />
-  )
+  const { stakePoolMetadata } = useStakePoolMetadata()
+  const loading = <Loading size={size} />
   if (!rewardDistributorData.isFetched) return loading
+  if (!rewardDistributorData.data && stakePoolMetadata) {
+    return (
+      <TotalStaked
+        stakePoolMetadata={stakePoolMetadata}
+        style={{
+          display: 'flex',
+          gap: '1px',
+          lineHeight: '1.25',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      />
+    )
+  }
   if (!rewardMintInfo.data || !rewardsRate.data) return loading
   return (
     <View

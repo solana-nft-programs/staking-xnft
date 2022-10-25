@@ -1,4 +1,4 @@
-import { View, Text, Loading } from 'react-xnft'
+import { View, Loading, useMetadata } from 'react-xnft'
 import {
   StakeEntryTokenData,
   useStakedTokenDatas,
@@ -12,6 +12,7 @@ import { StakedToken } from '../components/StakedToken'
 import { useEffect, useMemo, useState } from 'react'
 import { StakeDrawer } from '../components/StakeDrawer'
 import { UnstakeDrawer } from '../components/UnstakeDrawer'
+import { Text } from '../common/Text'
 
 export function tokenId(tokenData: AllowedTokenData | StakeEntryTokenData) {
   return tokenData.metaplexData?.parsed.mint.toString() ?? ''
@@ -26,6 +27,7 @@ export function StakeUntake() {
   >([])
   const allowedTokens = useAllowedTokenDatas(true)
   const stakedTokenDatas = useStakedTokenDatas()
+  const theme = useMetadata()
 
   useMemo(() => {
     setSelectedUnstakedTokens([])
@@ -54,106 +56,33 @@ export function StakeUntake() {
               justifyContent: 'space-between',
             }}
           >
-            <View
-              style={{
-                padding: '5px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-              }}
-            >
+            {new Array(4).fill(
               <View
                 style={{
+                  padding: '5px 0px 5px 0px',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  width: '100%',
-                  maxWidth: 'calc(100% - 10px)',
-                  borderRadius: '6px',
-                  minHeight: '150px',
-                  minWidth: '150px',
-                  background: '#111',
+                  flexDirection: 'column',
                 }}
               >
-                <Loading />
+                <View
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                    maxWidth: 'calc(100% - 10px)',
+                    borderRadius: '6px',
+                    minHeight: '150px',
+                    minWidth: '150px',
+                    background: theme.isDarkMode ? '#222' : '#CCC',
+                  }}
+                >
+                  <Loading />
+                </View>
               </View>
-            </View>
-            <View
-              style={{
-                padding: '5px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-              }}
-            >
-              <View
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: '100%',
-                  maxWidth: 'calc(100% - 10px)',
-                  borderRadius: '6px',
-                  minHeight: '150px',
-                  minWidth: '150px',
-                  background: '#111',
-                }}
-              >
-                <Loading />
-              </View>
-            </View>
-            <View
-              style={{
-                padding: '5px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-              }}
-            >
-              <View
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: '100%',
-                  maxWidth: 'calc(100% - 10px)',
-                  borderRadius: '6px',
-                  minHeight: '150px',
-                  minWidth: '150px',
-                  background: '#111',
-                }}
-              >
-                <Loading />
-              </View>
-            </View>
-            <View
-              style={{
-                padding: '5px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-              }}
-            >
-              <View
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: '100%',
-                  maxWidth: 'calc(100% - 10px)',
-                  borderRadius: '6px',
-                  minHeight: '150px',
-                  minWidth: '150px',
-                  background: '#111',
-                }}
-              >
-                <Loading />
-              </View>
-            </View>
+            )}
           </View>
         ) : allowedTokens.data?.length === 0 &&
           stakedTokenDatas.data?.length === 0 ? (

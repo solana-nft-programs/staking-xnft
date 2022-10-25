@@ -35,7 +35,11 @@ export const executeAllTransactions = async (
     tx.feePayer = wallet.publicKey
     tx.recentBlockhash = recentBlockhash
   }
-  await wallet.signAllTransactions(transactions)
+  if (transactions.length > 1) {
+    await wallet.signAllTransactions(transactions)
+  } else {
+    await wallet.signTransaction(transactions[0]!)
+  }
   let txIds: string[] = []
   if (preTx) {
     const txid = await sendAndConfirmRawTransaction(

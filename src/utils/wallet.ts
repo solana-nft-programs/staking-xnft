@@ -4,12 +4,12 @@ export function iWallet(publicKey: PublicKey) {
   return {
     signTransaction: async (tx: Transaction) => {
       // @ts-ignore
-      window.xnft.signTransaction(tx)
+      window.xnft.solana.signTransaction(tx)
       return tx
     },
     signAllTransactions: async (txs: Transaction[]) => {
       // @ts-ignore
-      await window.xnft.signAllTransactions(txs)
+      await window.xnft.solana.signAllTransactions(txs)
       return txs
     },
     publicKey: publicKey,

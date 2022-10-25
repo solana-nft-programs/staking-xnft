@@ -3,23 +3,33 @@ import { useRewardDistributorData } from '../hooks/useRewardDistributorData'
 import { useRewardMintInfo } from '../hooks/useRewardMintInfo'
 import { useRewards } from '../hooks/useRewards'
 import { formatAmountAsDecimal } from '../common/units'
+import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
+import { PercentStaked } from './PercentStaked'
+import { Loading } from '../common/Loading'
 
 export function RewardsAccumulated({ size = 30 }) {
   const rewards = useRewards()
   const rewardDistributorData = useRewardDistributorData()
   const rewardMintInfo = useRewardMintInfo()
-  const loading = (
-    <View
-      style={{
-        margin: `0px auto`,
-        borderRadius: '6px',
-        height: `${size * 1.25}px`,
-        width: `${size * 4}px`,
-        backgroundColor: 'rgba(255,255,255,.1)',
-      }}
-    />
-  )
+  const { stakePoolMetadata } = useStakePoolMetadata()
+
+  const loading = <Loading size={size} />
   if (!rewardDistributorData.isFetched) return loading
+  if (!rewardDistributorData.data && stakePoolMetadata) {
+    return (
+      <PercentStaked
+        stakePoolMetadata={stakePoolMetadata}
+        style={{
+          fontSize: `${size}px`,
+          display: 'flex',
+          lineHeight: '1.25',
+          gap: '1px',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      />
+    )
+  }
   if (!rewardMintInfo.data?.mintInfo || !rewards.data) return loading
   return (
     <View

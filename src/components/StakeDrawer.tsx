@@ -1,4 +1,7 @@
-import { Button, Loading, Text, View } from 'react-xnft'
+import { Loading, useMetadata, View } from 'react-xnft'
+import { Button } from '../common/Button'
+import { Text } from '../common/Text'
+import { dark1 } from '../config/colors'
 import { useHandleStake } from '../handlers/useHandleStake'
 import { AllowedTokenData } from '../hooks/useAllowedTokenDatas'
 
@@ -12,12 +15,12 @@ export function StakeDrawer({
   selectAll: () => void
 }) {
   const handleStake = useHandleStake()
-
+  const { isDarkMode } = useMetadata()
   return (
     <View
       style={{
         width: '100%',
-        background: '#111',
+        background: dark1(isDarkMode),
         position: 'absolute',
         bottom: selectedTokens.length > 0 ? '0px' : '-60px',
         padding: '10px',
@@ -26,15 +29,25 @@ export function StakeDrawer({
         alignItems: 'center',
       }}
     >
-      <View style={{ display: 'flex', gap: '10px' }}>
+      <View style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
         <Button
-          style={{ background: 'none', padding: '0px', width: 'auto' }}
+          style={{
+            background: 'none',
+            padding: '5px',
+            width: 'auto',
+            cursor: 'pointer',
+          }}
           onClick={() => cancel()}
         >
           <Text>Cancel</Text>
         </Button>
         <Button
-          style={{ background: 'none', padding: '0px', width: 'auto' }}
+          style={{
+            padding: '5px',
+            background: 'none',
+            width: 'auto',
+            cursor: 'pointer',
+          }}
           onClick={() => selectAll()}
         >
           <Text>Select all</Text>

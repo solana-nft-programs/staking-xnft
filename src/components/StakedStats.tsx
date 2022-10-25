@@ -1,7 +1,8 @@
 import { secondstoDuration } from '@cardinal/common'
 import { BN } from '@project-serum/anchor'
 import { PublicKey } from '@solana/web3.js'
-import { Text, View } from 'react-xnft'
+import { View } from 'react-xnft'
+import { Text } from '../common/Text'
 import {
   formatAmountAsDecimal,
   formatMintNaturalAmountAsDecimal,
@@ -35,8 +36,8 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
               justifyContent: 'space-between',
             }}
           >
-            <Text>Amount:</Text>
-            <Text>
+            <Text style={{ fontSize: '14px', opacity: 0.5 }}>Amount:</Text>
+            <Text style={{ fontSize: '14px' }}>
               {formatAmountAsDecimal(
                 rewardMintInfo.data?.mintInfo.decimals,
                 tokenData.stakeEntry && tokenData.stakeEntry.parsed.amount,
@@ -53,8 +54,8 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
             justifyContent: 'space-between',
           }}
         >
-          <Text>Boost:</Text>
-          <Text>
+          <Text style={{ fontSize: '14px', opacity: 0.5 }}>Boost:</Text>
+          <Text style={{ fontSize: '14px' }}>
             {(rewardDistributorData.data?.parsed.multiplierDecimals !==
               undefined &&
               formatAmountAsDecimal(
@@ -88,8 +89,8 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
                   justifyContent: 'space-between',
                 }}
               >
-                <Text>Daily:</Text>
-                <Text>
+                <Text style={{ fontSize: '14px', opacity: 0.5 }}>Daily:</Text>
+                <Text style={{ fontSize: '14px' }}>
                   {formatAmountAsDecimal(
                     rewardMintInfo.data.mintInfo.decimals,
                     rewardsRate.data?.rewardsRateMap[
@@ -108,8 +109,8 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
                   justifyContent: 'space-between',
                 }}
               >
-                <Text>Claim:</Text>
-                <Text>
+                <Text style={{ fontSize: '14px', opacity: 0.5 }}>Claim:</Text>
+                <Text style={{ fontSize: '14px' }}>
                   {formatMintNaturalAmountAsDecimal(
                     rewardMintInfo.data.mintInfo,
                     rewards.data?.rewardMap[
@@ -135,8 +136,10 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Text>Next rewards:</Text>
-                  <Text>
+                  <Text style={{ fontSize: '14px', opacity: 0.5 }}>
+                    Next rewards:
+                  </Text>
+                  <Text style={{ fontSize: '14px' }}>
                     {secondstoDuration(
                       rewards.data.rewardMap[
                         tokenData.stakeEntry?.pubkey.toString() || ''
@@ -156,8 +159,8 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
               justifyContent: 'space-between',
             }}
           >
-            <Text>Cooldown:</Text>
-            <Text>
+            <Text style={{ fontSize: '14px', opacity: 0.5 }}>Cooldown:</Text>
+            <Text style={{ fontSize: '14px' }}>
               {tokenData.stakeEntry?.parsed.cooldownStartSeconds.toNumber() +
                 stakePool.parsed.cooldownSeconds -
                 UTCNow >
@@ -180,8 +183,8 @@ export function StakedStats({ tokenData }: { tokenData: StakeEntryTokenData }) {
               justifyContent: 'space-between',
             }}
           >
-            <Text>Min Time:</Text>
-            <Text>
+            <Text style={{ fontSize: '14px', opacity: 0.5 }}>Min Time:</Text>
+            <Text style={{ fontSize: '14px' }}>
               {tokenData.stakeEntry?.parsed.lastStakedAt.toNumber() +
                 stakePool.parsed.minStakeSeconds -
                 UTCNow >

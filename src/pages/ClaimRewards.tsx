@@ -1,14 +1,16 @@
-import { View, Text, Button, Loading } from 'react-xnft'
+import { View, Loading } from 'react-xnft'
 import { RewardRate } from '../components/RewardRate'
 import { RewardsAccumulated } from '../components/RewardsAccumulated'
 import { StakePoolImage } from '../components/StakePoolImage'
+import { Text } from '../common/Text'
 import { useHandleClaimRewards } from '../handlers/useHandleClaimRewards'
 import { useStakedTokenDatas } from '../hooks/useStakedTokenDatas'
-import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
+import { Button } from '../common/Button'
+import { useStakePool } from '../hooks/useStakePool'
 
 export function ClaimRewards() {
-  const { stakePoolMetadata } = useStakePoolMetadata()
   const handleClaimRewards = useHandleClaimRewards()
+  const stakePool = useStakePool()
   const stakedTokenDatas = useStakedTokenDatas()
   return (
     <View style={{ height: '100%', width: '100%' }}>
@@ -27,9 +29,12 @@ export function ClaimRewards() {
             }}
           >
             <StakePoolImage
-              stakePoolMetadata={stakePoolMetadata}
+              stakePool={stakePool}
               width={150}
               style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 margin: '0px auto',
               }}
             />
