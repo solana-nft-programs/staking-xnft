@@ -10,6 +10,7 @@ import {
   useStakePoolEntryCounts,
 } from '../hooks/useStakePoolEntryCounts'
 import { StakePool, stakePoolDisplayName } from '../hooks/useAllStakePools'
+import { Button } from '../common/Button'
 
 export function Home() {
   const nav = useNavigation()
@@ -28,9 +29,35 @@ export function Home() {
         style={{
           display: 'flex',
           width: '100%',
-          padding: '0px 12px 12px 12px',
+          padding: '0px 12px 0px 12px',
         }}
       />
+      <Button
+        style={{
+          display: 'flex',
+          width: '100%',
+          cursor: 'pointer',
+          marginBottom: '6px',
+          background: 'none',
+          backgroundColor: 'none',
+        }}
+        onClick={() => {
+          // @ts-ignore
+          return window.xnft.openWindow(
+            `https://github.com/cardinal-labs/cardinal-staking-ui#customizing-your-stake-pool`
+          )
+        }}
+      >
+        <Text
+          style={{
+            fontSize: '12px',
+            textAlign: 'center',
+            opacity: 0.5,
+          }}
+        >
+          Don't see your pool?
+        </Text>
+      </Button>
       {!stakePoolEntryCounts.isFetched ? (
         <View
           style={{
@@ -154,6 +181,27 @@ export function Home() {
                 )}
               </View>
             ))}
+          <Button
+            style={{
+              display: 'flex',
+              width: '100%',
+              cursor: 'pointer',
+              marginBottom: '6px',
+              marginTop: '6px',
+            }}
+            onClick={() => {
+              // @ts-ignore
+              return window.xnft.openWindow(`https://stake.cardinal.so/admin`)
+            }}
+          >
+            <Text
+              style={{
+                textAlign: 'center',
+              }}
+            >
+              Create pool
+            </Text>
+          </Button>
         </View>
       )}
     </View>
