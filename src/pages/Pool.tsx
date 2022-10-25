@@ -5,6 +5,8 @@ import { StakePoolMetadata } from '../config/config'
 import { useStakePoolMetadata } from '../providers/StakePoolMetadataProvider'
 import { ClaimRewards } from './ClaimRewards'
 import { StakeUntake } from './StakeUnstake'
+import { GlyphBrowse } from '../assets/GlyphBrowse'
+import { RentGlow } from '../assets/RentGlow'
 
 export function Pool({
   stakePoolMetadata,
@@ -28,7 +30,7 @@ export function Pool({
               background: theme.isDarkMode ? '#333' : '#CCC',
               cursor: 'pointer',
             },
-            tabBarActiveTintColor: '#401a2f',
+            tabBarActiveTintColor: theme.isDarkMode ? '#888' : '#888',
             tabBarInactiveTintColor: theme.isDarkMode ? '#111' : '#EEE',
             tabBarIcon: () => {
               if (route.name === 'stake') {
@@ -36,7 +38,7 @@ export function Pool({
                   <Tab.Icon
                     element={
                       <View>
-                        <Text>Stake</Text>
+                        <GlyphBrowse />
                       </View>
                     }
                   />
@@ -46,7 +48,7 @@ export function Pool({
                   <Tab.Icon
                     element={
                       <View>
-                        <Text>Claim</Text>
+                        <RentGlow />
                       </View>
                     }
                   />

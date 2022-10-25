@@ -30,7 +30,7 @@ export function ClaimRewards() {
           >
             <StakePoolImage
               stakePool={stakePool}
-              width={150}
+              width={200}
               style={{
                 display: 'flex',
                 justifyContent: 'center',
