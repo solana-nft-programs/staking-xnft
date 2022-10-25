@@ -15,7 +15,7 @@
     "@solana/web3.js": "1.54.0"
   },
   "devDependencies": {
-    "@coral-xyz/xnft-cli": "latest",
+    "@coral-xyz/xnft-cli": "^0.2.0-latest.171",
     "@tanstack/react-query-devtools": "^4.2.3"
   },
   "dependencies": {
@@ -29,6 +29,6 @@
     "bignumber.js": "^9.1.0",
     "process": "^0.11.10",
     "react": "^17.0.2",
-    "react-xnft": "latest"
+    "react-xnft": "^0.2.0-latest.171"
   }
 }

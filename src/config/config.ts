@@ -32,6 +32,8 @@ export type StakePoolMetadata = {
   nameInHeader?: boolean
   // Publickey for this stake pool
   stakePoolAddress: PublicKey
+  // Description for this stake pool
+  description?: string
   // Default receipt type. Setting this will remove the option for the user to choose which receipt type to use
   receiptType?: ReceiptType
   // Default empty. Setting this will tell the UI to only show tokens of that standard. Supports fungible or non-fungible
@@ -42,12 +44,16 @@ export type StakePoolMetadata = {
   notFound?: boolean
   // Optional hostname to remap
   hostname?: string
+  // Optional hide footer
+  hideFooter?: boolean
   // Optional config to link redirect to page when you click on this pool
   redirect?: string
   // Hide allowed tokens style
   hideAllowedTokens?: boolean
   // styles to apply to the whole stake pool
   styles?: CSSProperties
+  // Contrast homepage background
+  contrastHomepageBkg?: boolean
   // Colors object to style the stake page
   colors?: {
     primary: string
@@ -57,6 +63,12 @@ export type StakePoolMetadata = {
     fontColorSecondary?: string
     backgroundSecondary?: string
   }
+  // Disallow regions based on IP address
+  disallowRegions?: { code: string; subdivision?: string }[]
+  // If the logo should be displayed with paddding
+  logoPadding?: boolean
+  // Optional social links
+  socialLinks?: []
   // Image url to be used as the icon in the pool selector and the header
   imageUrl?: string
   // Secondary image url to be used next to the icon in the pool selector and the header
@@ -88,22 +100,144 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
   //     secondary: 'rgb(157,120,138, 0.6)',
   //   },
   // },
+
   {
-    name: 'yojimbo',
-    displayName: 'Yojimbo Degens Festival(stake)',
-    nameInHeader: true,
+    name: 'portals',
+    displayName: 'Portals',
     stakePoolAddress: new PublicKey(
-      'HRthLdCtH62b6xBMve7uFy5mq9b9h8gwUMeKJm9wTQPs'
+      '8Da8qPqSwc2DNenp5wwK7HWxpSrvxw8LUNoBZ2gAYjaz'
     ),
-    websiteUrl: 'https://twitter.com/YojimboDegens',
-    receiptType: ReceiptType.Original,
-    maxStaked: 4400,
-    imageUrl: 'https://arweave.net/VP9h1qEmWUgaNPYY1hXSR-FTjKAJpxugWAYDGHvZMTg',
+    description: 'Portals staking pool provided by The BuildersDAO.',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/portals-nft.jpg',
     colors: {
-      primary: 'rgb(207 89 67)',
-      secondary: '#a7594b',
-      accent: '#d35e48',
-      fontColor: '#092037',
+      primary: '#0d1718',
+      secondary: '#416460',
+      accent: '#0089C1',
+      fontColor: '#FFFFFF',
+    },
+  },
+  {
+    name: 'thenewexplorersclub',
+    displayName: 'The New Explorers Club',
+    stakePoolAddress: new PublicKey(
+      '49GnPoU2eexWaSo1n7wDFJov7WLiQ71fvpLj1ZoMxTVL'
+    ),
+    description:
+      'The New Explorers Club staking pool provided by The BuildersDAO.',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/tnec-nft.jpg',
+    colors: {
+      primary: '#000000',
+      secondary: '#6c9180',
+      accent: '#BCFFE0',
+      fontColor: '#FFFFFF',
+    },
+  },
+  {
+    name: 'thebuildersdao',
+    displayName: 'The BuildersDAO',
+    stakePoolAddress: new PublicKey(
+      'FLJa7J28f2LBFJYqQLhhjaXR4WnfU2RHpSrr32p8bnSz'
+    ),
+    description: 'The BuildersDAO is a community of metaverse builders.',
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/buildersdao-nft.png',
+    colors: {
+      primary: '#000000',
+      secondary: '#4da1de',
+      accent: '#0089C1',
+      fontColor: '#FFFFFF',
+    },
+  },
+  {
+    name: 'shadiesboosted',
+    displayName: 'SHADIES BOOSTED 2X STAKING',
+    stakePoolAddress: new PublicKey(
+      '29MgtLuX8ByGMZoreUoY7hsP2YY935gJ3wRB1fhiSF8o'
+    ),
+    hostname: 'https://staking2x.theshadyclass.xyz',
+    hidden: false,
+    notFound: false,
+    imageUrl:
+      'https://raw.githubusercontent.com/flipthetip/test-tsc/main/newth.png',
+    // secondaryImageUrl: 'https://raw.githubusercontent.com/flipthetip/test-tsc/main/arx.png',
+    backgroundImage:
+      'https://raw.githubusercontent.com/flipthetip/test-tsc/main/newbg.png',
+    styles: {
+      fontFamily: 'Franklin Gothic Medium',
+      // fontWeight: 500,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    },
+    colors: {
+      primary: '#000000',
+      secondary: '#f34d00',
+      accent: '#413F42',
+      fontColor: '#FFFFFF',
+      fontColorSecondary: '#FFFFFF',
+    },
+    // maxStaked: ,
+    receiptType: ReceiptType.Original,
+  },
+  {
+    name: 'shadiesstandard',
+    displayName: 'SHADIES STANDARD STAKING',
+    stakePoolAddress: new PublicKey(
+      'zNt5nnEaL87rG9DT2cxvdVMf8sLBe6qEuZK8D5K4r9M'
+    ),
+    hostname: 'https://staking1x.theshadyclass.xyz',
+    hidden: false,
+    notFound: false,
+    imageUrl:
+      'https://raw.githubusercontent.com/flipthetip/test-tsc/main/newth.png',
+    // secondaryImageUrl: 'https://raw.githubusercontent.com/flipthetip/test-tsc/main/arx.png',
+    backgroundImage:
+      'https://raw.githubusercontent.com/flipthetip/test-tsc/main/newbg.png',
+    styles: {
+      fontFamily: 'Franklin Gothic Medium',
+      // fontWeight: 500,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    },
+    colors: {
+      primary: '#000000',
+      secondary: '#f34d00',
+      accent: '#413F42',
+      fontColor: '#FFFFFF',
+      fontColorSecondary: '#FFFFFF',
+    },
+    // maxStaked: ,
+    receiptType: ReceiptType.Original,
+  },
+  {
+    name: 'Learn2Earn',
+    displayName: 'Learn 2 Earn DOTS',
+    stakePoolAddress: new PublicKey(
+      'DgrtWV95DP3ix4GFMKDLwqMNZ213KJk9NgM6vmdPtyk1'
+    ),
+    contrastHomepageBkg: true,
+    maxStaked: 5000,
+    receiptType: ReceiptType.Original,
+    websiteUrl: 'https://www.bithq.co/',
+    hostname: 'Learn2Earn.io',
+    imageUrl:
+      'https://cdn.discordapp.com/attachments/989483399477604404/1023947734828449802/DOTS_NFT1.5.png',
+    styles: {
+      fontFamily: 'serif',
+      fontWeight: 500,
+    },
+    backgroundImage:
+      'https://cdn.discordapp.com/attachments/989483399477604404/1024694267282726942/ReliefBlackBackground.jpg',
+    tokenStandard: TokenStandard.NonFungible,
+    hideAllowedTokens: true,
+    colors: {
+      primary: '#000000',
+      secondary: '#FFFFFF',
+      accent: '#000000',
+      fontColor: '#FFFFFF',
+      fontColorSecondary: '#000000',
+      backgroundSecondary: '#000000',
     },
   },
   {
@@ -124,6 +258,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       '3BZCupFU6X3wYJwgTsKS2vTs4VeMrhSZgx4P2TfzExtP'
     ),
+    logoPadding: true,
+    description:
+      'Blockasset is creating a revolutionary way for fans and athletes to interact and connect with each other by way of multiple touchpoints that provide benefits for both the fan and the athlete.',
     websiteUrl: 'https://hub.blockasset.co/nft-staking-v2',
     imageUrl:
       'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/blockasset.png',
@@ -145,7 +282,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
-      accent: '#1fcfb11c',
+      accent: '#2a393a',
       fontColor: '#FFFFFF',
     },
   },
@@ -177,7 +314,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
-      accent: '#1fcfb11c',
+      accent: '#30c2b9',
       fontColor: '#FFFFFF',
     },
   },
@@ -207,7 +344,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
-      accent: '#1fcfb11c',
+      accent: '#2a393a',
       fontColor: '#FFFFFF',
     },
   },
@@ -231,7 +368,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
-      accent: '#1fcfb11c',
+      accent: '#2a393a',
       fontColor: '#FFFFFF',
     },
   },
@@ -255,8 +392,31 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
-      accent: '#1fcfb11c',
+      accent: '#2a393a',
       fontColor: '#FFFFFF',
+    },
+  },
+  {
+    name: 'META',
+    displayName: 'META collections',
+    stakePoolAddress: new PublicKey(
+      'BCtcLrKhiZbFTRMB2W8iQWttYF82cLJzo7ZnnnkqXnnC'
+    ),
+    hostname: 'stake.metaladsai.com',
+    websiteUrl: 'https://metaladsai.com',
+    imageUrl:
+      'https://raw.githubusercontent.com/poisonlab/photo/main/WhatsApp%20Image%202022-10-05%20at%2017.53.36.jpeg',
+    styles: {
+      fontFamily: 'serif',
+      fontWeight: 500,
+    },
+    colors: {
+      primary: '#27033d',
+      secondary: '#27033d',
+      accent: '#a3219f',
+      fontColor: '#FFFFFF',
+      fontColorSecondary: '#000000',
+      backgroundSecondary: '#000000',
     },
   },
   {
@@ -340,7 +500,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     colors: {
       primary: '#7D89D8',
       secondary: '##131418',
-      accent: '#1fcfb11c',
+      accent: '#2a393a',
       fontColor: '#FFFFFF',
     },
   },
@@ -358,10 +518,10 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
   {
     name: 'whales',
     displayName: 'Catalina Whales',
+    redirect: 'https://floating.catalinawhalemixer.com/',
     stakePoolAddress: new PublicKey(
       'BrR1W8bNBfJZGqzsSvMQ8tUJL9tm963E6qR7R99YReiD'
     ),
-    hidden: true,
     receiptType: ReceiptType.Original,
     imageUrl:
       'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/whales.jpg',
@@ -462,6 +622,8 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://www.roguesharks.org/',
     receiptType: ReceiptType.Original,
     hostname: 'stake.roguesharks',
+    contrastHomepageBkg: true,
+    hideFooter: true,
     maxStaked: 4991, // update with collection size
     imageUrl:
       'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/rogue-sharks.svg',
@@ -488,8 +650,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://cannaverse.gg/',
     receiptType: ReceiptType.Original,
     maxStaked: 1700,
-    imageUrl:
-      'https://cannaverse.gg/wp-content/uploads/2022/05/cannaverse-white-logo-full-1-e1652295225261.png',
+    imageUrl: './logos/cannaverse.png',
     colors: {
       primary: '#211F20',
       secondary: '#211F20',
@@ -545,7 +706,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
-      accent: '#1fcfb11c',
+      accent: '#2a393a',
       fontColor: '#FFFFFF',
     },
   },
@@ -565,20 +726,25 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     name: 'Orbit',
     displayName: 'Orbit',
     hostname: 'stake.unfrgtn.space',
+    hideFooter: true,
     stakePoolAddress: new PublicKey(
       '4TMt9ehagkdFgZJBnyBRBTNfXUD8xLX18JyPVeGDpaKb'
     ),
     websiteUrl: 'https://unfrgtn.space/',
     receiptType: ReceiptType.Original,
     imageUrl:
-      'https://cdn.discordapp.com/attachments/475411995273854976/987098707449241600/logo_2.png',
-    maxStaked: 1969,
+      'https://cdn.discordapp.com/attachments/988356861491302440/1029422494131695737/New_Project.png',
+    maxStaked: 1921,
     colors: {
-      primary: '#000000',
-      secondary: '#4da1de',
-      accent: '#1fcfb11c',
+      primary: '#2d0c65',
+      secondary: '#ed69fa',
+      accent: '#f7f6fe',
       fontColor: '#FFFFFF',
     },
+    links: [
+      { text: 'Twitter', value: 'https://twitter.com/UnfrgtnOrbit' },
+      { text: 'Discord', value: 'https://discord.gg/U2RQ8tZvV9' },
+    ],
   },
   {
     name: 'The Frontier',
@@ -857,8 +1023,9 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     websiteUrl: 'https://1space.me/',
     receiptType: ReceiptType.Original,
     hostname: 'stake.1space.me',
+    hideFooter: true,
     imageUrl: 'https://1space.me/images/os-logo-white.jpeg',
-    maxStaked: 200,
+    maxStaked: 300,
     links: [
       {
         text: 'ONEHERO NFT',
@@ -936,7 +1103,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     colors: {
       primary: '#000000',
       secondary: '#4da1de',
-      accent: '#1fcfb11c',
+      accent: '#2a393a',
       fontColor: '#FFFFFF',
     },
   },
@@ -994,9 +1161,10 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
       'AzFdEKtqanvPeQ7chcKNXJHAzcZRLc8GbkSzG8JUrT4W'
     ),
     hostname: 'stake.rebellionbots.io',
+    hideFooter: true,
     websiteUrl: 'https://www.rebellionbots.io',
     receiptType: ReceiptType.Original,
-    maxStaked: 801, // update with collection size
+    maxStaked: 1205, // update with collection size
     imageUrl:
       'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/rebellion-bots.jpeg',
     secondaryImageUrl:
@@ -1082,7 +1250,6 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     stakePoolAddress: new PublicKey(
       '3JXoAsm4YZGzC2VGtSBdN8EX36wW8uuoXX9nWFqamUu2'
     ),
-    hidden: true,
     websiteUrl: 'https://www.hoa.house/',
     receiptType: ReceiptType.Original,
     tokenStandard: TokenStandard.NonFungible,
@@ -1098,6 +1265,289 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
       secondary: '#10abf0',
       backgroundSecondary: '#182443',
     },
+  },
+  {
+    name: 'parcl-san-francisco',
+    displayName: 'Parcl San Francisco',
+    stakePoolAddress: new PublicKey(
+      '3woMMfxPCzyGHdtosNtWLKZCWNvok4k3Eup97eayXxWk'
+    ),
+    websiteUrl: 'https://parcl.co/',
+    receiptType: ReceiptType.None,
+    tokenStandard: TokenStandard.Fungible,
+    hideAllowedTokens: true,
+    nameInHeader: true,
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-san-francisco.png',
+    backgroundImage:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+    colors: {
+      primary: '#0d1939',
+      secondary: '#10abf0',
+      backgroundSecondary: '#182443',
+    },
+    links: [
+      { text: 'San Francisco', value: '/parcl-san-francisco' },
+      { text: 'Brooklyn', value: '/parcl-brooklyn' },
+      { text: 'Phoenix', value: '/parcl-phoenix' },
+      { text: 'Manhattan', value: '/parcl-manhattan' },
+      { text: 'Los Angeles', value: '/parcl-los-angeles' },
+      { text: 'Miami', value: '/parcl-miami' },
+    ],
+    disallowRegions: [
+      { code: 'US' }, // united states
+      { code: 'CU' }, // cuba
+      { code: 'IR' }, // iran
+      { code: 'LY' }, // libya
+      { code: 'IQ' }, // iraq
+      { code: 'LB' }, // lebanon
+      { code: 'CN' }, // china
+      { code: 'CF' }, // central african republic
+      { code: 'SS' }, // south sudan
+      { code: 'SS' }, // sudan (north)
+      { code: 'SY' }, // syria
+      { code: 'SO' }, // somalia
+      { code: 'VE' }, // venezuela
+      { code: 'YE' }, // yemen
+      { code: 'RU' }, // russia
+      { code: 'UA', subdivision: '43' }, // the crimea
+    ],
+  },
+  {
+    name: 'parcl-miami',
+    displayName: 'Parcl Miami',
+    stakePoolAddress: new PublicKey(
+      '74Zf3B2y6GVsHpoUQ6My8NktzHjT7Cgn6VRkUB946C62'
+    ),
+    websiteUrl: 'https://parcl.co/',
+    receiptType: ReceiptType.None,
+    tokenStandard: TokenStandard.Fungible,
+    hideAllowedTokens: true,
+    nameInHeader: true,
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-miami.png',
+    backgroundImage:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+    colors: {
+      primary: '#0d1939',
+      secondary: '#10abf0',
+      backgroundSecondary: '#182443',
+    },
+    links: [
+      { text: 'San Francisco', value: '/parcl-san-francisco' },
+      { text: 'Brooklyn', value: '/parcl-brooklyn' },
+      { text: 'Phoenix', value: '/parcl-phoenix' },
+      { text: 'Manhattan', value: '/parcl-manhattan' },
+      { text: 'Los Angeles', value: '/parcl-los-angeles' },
+      { text: 'Miami', value: '/parcl-miami' },
+    ],
+    disallowRegions: [
+      { code: 'US' }, // united states
+      { code: 'CU' }, // cuba
+      { code: 'IR' }, // iran
+      { code: 'LY' }, // libya
+      { code: 'IQ' }, // iraq
+      { code: 'LB' }, // lebanon
+      { code: 'CN' }, // china
+      { code: 'CF' }, // central african republic
+      { code: 'SS' }, // south sudan
+      { code: 'SS' }, // sudan (north)
+      { code: 'SY' }, // syria
+      { code: 'SO' }, // somalia
+      { code: 'VE' }, // venezuela
+      { code: 'YE' }, // yemen
+      { code: 'RU' }, // russia
+      { code: 'UA', subdivision: '43' }, // the crimea
+    ],
+  },
+  {
+    name: 'parcl-los-angeles',
+    displayName: 'Parcl Los Angeles',
+    stakePoolAddress: new PublicKey(
+      '8kbX53gQnpXqHQKg4Z3T1uSHsDHaP7Q7VnMbfnBWtJvk'
+    ),
+    websiteUrl: 'https://parcl.co/',
+    receiptType: ReceiptType.None,
+    tokenStandard: TokenStandard.Fungible,
+    hideAllowedTokens: true,
+    nameInHeader: true,
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-los-angeles.png',
+    backgroundImage:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+    colors: {
+      primary: '#0d1939',
+      secondary: '#10abf0',
+      backgroundSecondary: '#182443',
+    },
+    links: [
+      { text: 'San Francisco', value: '/parcl-san-francisco' },
+      { text: 'Brooklyn', value: '/parcl-brooklyn' },
+      { text: 'Phoenix', value: '/parcl-phoenix' },
+      { text: 'Manhattan', value: '/parcl-manhattan' },
+      { text: 'Los Angeles', value: '/parcl-los-angeles' },
+      { text: 'Miami', value: '/parcl-miami' },
+    ],
+    disallowRegions: [
+      { code: 'US' }, // united states
+      { code: 'CU' }, // cuba
+      { code: 'IR' }, // iran
+      { code: 'LY' }, // libya
+      { code: 'IQ' }, // iraq
+      { code: 'LB' }, // lebanon
+      { code: 'CN' }, // china
+      { code: 'CF' }, // central african republic
+      { code: 'SS' }, // south sudan
+      { code: 'SS' }, // sudan (north)
+      { code: 'SY' }, // syria
+      { code: 'SO' }, // somalia
+      { code: 'VE' }, // venezuela
+      { code: 'YE' }, // yemen
+      { code: 'RU' }, // russia
+      { code: 'UA', subdivision: '43' }, // the crimea
+    ],
+  },
+  {
+    name: 'parcl-manhattan',
+    displayName: 'Parcl Manhattan',
+    stakePoolAddress: new PublicKey(
+      '8ZBEzrvBZiSnCS9cQHpL8orWvMukPCZ4y4nyxzZ8H9i'
+    ),
+    websiteUrl: 'https://parcl.co/',
+    receiptType: ReceiptType.None,
+    tokenStandard: TokenStandard.Fungible,
+    hideAllowedTokens: true,
+    nameInHeader: true,
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-manhattan.png',
+    backgroundImage:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+    colors: {
+      primary: '#0d1939',
+      secondary: '#10abf0',
+      backgroundSecondary: '#182443',
+    },
+    links: [
+      { text: 'San Francisco', value: '/parcl-san-francisco' },
+      { text: 'Brooklyn', value: '/parcl-brooklyn' },
+      { text: 'Phoenix', value: '/parcl-phoenix' },
+      { text: 'Manhattan', value: '/parcl-manhattan' },
+      { text: 'Los Angeles', value: '/parcl-los-angeles' },
+      { text: 'Miami', value: '/parcl-miami' },
+    ],
+    disallowRegions: [
+      { code: 'US' }, // united states
+      { code: 'CU' }, // cuba
+      { code: 'IR' }, // iran
+      { code: 'LY' }, // libya
+      { code: 'IQ' }, // iraq
+      { code: 'LB' }, // lebanon
+      { code: 'CN' }, // china
+      { code: 'CF' }, // central african republic
+      { code: 'SS' }, // south sudan
+      { code: 'SS' }, // sudan (north)
+      { code: 'SY' }, // syria
+      { code: 'SO' }, // somalia
+      { code: 'VE' }, // venezuela
+      { code: 'YE' }, // yemen
+      { code: 'RU' }, // russia
+      { code: 'UA', subdivision: '43' }, // the crimea
+    ],
+  },
+
+  {
+    name: 'parcl-brooklyn',
+    displayName: 'Parcl Brooklyn',
+    stakePoolAddress: new PublicKey(
+      '9jnTHkJzxL14dE2CxAufBsTa19oeuNSMBuyqzZP1kDYh'
+    ),
+    websiteUrl: 'https://parcl.co/',
+    receiptType: ReceiptType.None,
+    tokenStandard: TokenStandard.Fungible,
+    hideAllowedTokens: true,
+    nameInHeader: true,
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-brooklyn.png',
+    backgroundImage:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+    colors: {
+      primary: '#0d1939',
+      secondary: '#10abf0',
+      backgroundSecondary: '#182443',
+    },
+    links: [
+      { text: 'San Francisco', value: '/parcl-san-francisco' },
+      { text: 'Brooklyn', value: '/parcl-brooklyn' },
+      { text: 'Phoenix', value: '/parcl-phoenix' },
+      { text: 'Manhattan', value: '/parcl-manhattan' },
+      { text: 'Los Angeles', value: '/parcl-los-angeles' },
+      { text: 'Miami', value: '/parcl-miami' },
+    ],
+    disallowRegions: [
+      { code: 'US' }, // united states
+      { code: 'CU' }, // cuba
+      { code: 'IR' }, // iran
+      { code: 'LY' }, // libya
+      { code: 'IQ' }, // iraq
+      { code: 'LB' }, // lebanon
+      { code: 'CN' }, // china
+      { code: 'CF' }, // central african republic
+      { code: 'SS' }, // south sudan
+      { code: 'SS' }, // sudan (north)
+      { code: 'SY' }, // syria
+      { code: 'SO' }, // somalia
+      { code: 'VE' }, // venezuela
+      { code: 'YE' }, // yemen
+      { code: 'RU' }, // russia
+      { code: 'UA', subdivision: '43' }, // the crimea
+    ],
+  },
+  {
+    name: 'parcl-phoenix',
+    displayName: 'Parcl Phoenix',
+    stakePoolAddress: new PublicKey(
+      'ESbcGhaddmgKWkW63txisKP6HwS3491brbP2hJuTrVY6'
+    ),
+    websiteUrl: 'https://parcl.co/',
+    receiptType: ReceiptType.None,
+    tokenStandard: TokenStandard.Fungible,
+    hideAllowedTokens: true,
+    nameInHeader: true,
+    imageUrl:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-phoenix.png',
+    backgroundImage:
+      'https://github.com/cardinal-labs/cardinal-staking-xnft/raw/main/assets/logos/parcl-bg.png',
+    colors: {
+      primary: '#0d1939',
+      secondary: '#10abf0',
+      backgroundSecondary: '#182443',
+    },
+    links: [
+      { text: 'San Francisco', value: '/parcl-san-francisco' },
+      { text: 'Brooklyn', value: '/parcl-brooklyn' },
+      { text: 'Phoenix', value: '/parcl-phoenix' },
+      { text: 'Manhattan', value: '/parcl-manhattan' },
+      { text: 'Los Angeles', value: '/parcl-los-angeles' },
+      { text: 'Miami', value: '/parcl-miami' },
+    ],
+    disallowRegions: [
+      { code: 'US' }, // united states
+      { code: 'CU' }, // cuba
+      { code: 'IR' }, // iran
+      { code: 'LY' }, // libya
+      { code: 'IQ' }, // iraq
+      { code: 'LB' }, // lebanon
+      { code: 'CN' }, // china
+      { code: 'CF' }, // central african republic
+      { code: 'SS' }, // south sudan
+      { code: 'SS' }, // sudan (north)
+      { code: 'SY' }, // syria
+      { code: 'SO' }, // somalia
+      { code: 'VE' }, // venezuela
+      { code: 'YE' }, // yemen
+      { code: 'RU' }, // russia
+      { code: 'UA', subdivision: '43' }, // the crimea
+    ],
   },
   {
     name: 'the-suites',
@@ -1130,6 +1580,34 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     },
   },
   {
+    name: 'meta-hunters',
+    displayName: 'Meta Hunters',
+    nameInHeader: true,
+    stakePoolAddress: new PublicKey(
+      'AjuWPVKFZBLZSSJS2xso9zBsfKSzXt14ebEMH6DbAAKg'
+    ),
+    websiteUrl: 'https://www.doubleupnft.com/',
+    receiptType: ReceiptType.Original,
+    tokenStandard: TokenStandard.NonFungible,
+    imageUrl:
+      'https://pbs.twimg.com/profile_images/1536554684172734464/T9A_Y2wl_400x400.jpg',
+    links: [
+      {
+        text: 'Twitter',
+        value: 'https://twitter.com/metahuntersnft?lang=en',
+      },
+      {
+        text: 'Discord',
+        value: 'https://discord.com/invite/Xyzt8qpM',
+      },
+    ],
+    colors: {
+      primary: '#020208',
+      secondary: '#166ca4',
+      fontColor: '#e6e7e8',
+    },
+  },
+  {
     name: 'moonshine-labs',
     displayName: 'Moonshine Labs',
     nameInHeader: true,
@@ -1141,7 +1619,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
     tokenStandard: TokenStandard.NonFungible,
     imageUrl:
       'https://www.arweave.net/IoihJxVlVjKp2x46GpnoQNi1pRWNJiLBI4FQiXK0SPA?ext=png',
-    maxStaked: 3546,
+    maxStaked: 4996,
     backgroundImage:
       'https://shdw-drive.genesysgo.net/5aWZWB6vXbZrf1CNmiM3rAWnzf36Bpuq8rxRYHBzGeGq/msl_caps_card_1.png',
     styles: {
@@ -1163,24 +1641,78 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
           totals: [
             {
               key: 'Bronze',
-              value: 2352,
+              value: 3363,
             },
             {
               key: 'Silver',
-              value: 1085,
+              value: 1498,
             },
             {
               key: 'Gold',
-              value: 98,
+              value: 125,
             },
             {
               key: 'Platinum',
-              value: 7,
+              value: 10,
             },
           ],
         },
       },
     ],
+    links: [
+      {
+        text: 'HOME',
+        value: 'https://warp.moonshinelabs.io/caps-home',
+      },
+      {
+        text: 'GAME',
+        value: 'https://warp.moonshinelabs.io/caps-game',
+      },
+      {
+        text: 'MINT',
+        value: 'https://warp.moonshinelabs.io/caps-mint',
+      },
+      {
+        text: 'BUY',
+        value: 'https://warp.moonshinelabs.io/caps-buy',
+      },
+      {
+        text: 'TWITTER',
+        value: 'https://warp.moonshinelabs.io/caps-twitter',
+      },
+      {
+        text: 'DISCORD',
+        value: 'https://warp.moonshinelabs.io/caps-discord',
+      },
+    ],
+  },
+  {
+    name: 'test-guys',
+    displayName: 'Test Guys',
+    hostname: 'research.moonshinelabs.io',
+    nameInHeader: true,
+    stakePoolAddress: new PublicKey(
+      'z4x4twXzrw8XVEFqQs9EcmgeXfhMqRpwYVpJEeRAbVN'
+    ),
+    websiteUrl: 'https://warp.moonshinelabs.io/caps',
+    receiptType: ReceiptType.Original,
+    tokenStandard: TokenStandard.NonFungible,
+    imageUrl:
+      'https://www.arweave.net/DXw0PO5-EZlx26duubW157IfvpiQvjbAoM5VFCMFEcI?ext=png',
+    maxStaked: 1111,
+    backgroundImage:
+      'https://shdw-drive.genesysgo.net/5aWZWB6vXbZrf1CNmiM3rAWnzf36Bpuq8rxRYHBzGeGq/tgbg.png',
+    styles: {
+      fontFamily: 'Roboto Serif',
+    },
+    colors: {
+      primary: '#7928CA',
+      secondary: '#4a148c',
+      accent: '#DE38C8',
+      fontColor: '#FFFFFF',
+      // fontColorSecondary: '#DE38C8',
+      // backgroundSecondary: '#DE38C8',
+    },
     links: [
       {
         text: 'HOME',
@@ -1259,6 +1791,7 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
   {
     name: '666starmoon',
     displayName: '666starmoon',
+    hidden: true,
     stakePoolAddress: new PublicKey(
       'B72Unafq2Y5DqkeN4BGSZ7gyqVTfXjigNrQkgDPxSCjo'
     ),
@@ -1326,5 +1859,235 @@ export const stakePoolMetadatas: StakePoolMetadata[] = [
         value: 'https://www.sweetapomint.org/',
       },
     ],
+  },
+  {
+    name: 'annoyed-rex-udder-chaos',
+    displayName: 'Annoyed Rex Club x Udder Chaos',
+    stakePoolAddress: new PublicKey(
+      '9NvrvM3Ji5RbbJtuAqXAzQL6cwHAv7n4KQQoUyUHqgT1'
+    ),
+    websiteUrl: 'https://udderchaos.io/',
+    imageUrl:
+      'https://oh66ydzlqmacybmraeswa7nxlpv4fogsvikmihqosj3rel6qixfa.arweave.net/cf3sDyuDACwFkQElYH23W-vCuNKqFMQeDpJ3Ei_QRco',
+    maxStaked: 500,
+    receiptType: ReceiptType.Original,
+    tokenStandard: TokenStandard.NonFungible,
+    hideAllowedTokens: true,
+    links: [
+      {
+        text: 'Discord',
+        value: 'https://discord.gg/udderchaos',
+      },
+      {
+        text: 'Buy',
+        value: 'https://magiceden.io/marketplace/arcxuc',
+      },
+    ],
+    colors: {
+      primary: '#000000',
+      secondary: '#BD38F3',
+      accent: '#8B2AB4',
+      fontColor: '#FFFFFF',
+    },
+  },
+  {
+    name: 'steamland',
+    displayName: 'Harvesting - Steamland',
+    stakePoolAddress: new PublicKey(
+      '5n9G7o9ZZFmfx4dcbd4HgNYcGWFiQ2wGKaKHYT8bWDf7'
+    ),
+    contrastHomepageBkg: true,
+    maxStaked: 2222,
+    receiptType: ReceiptType.Original,
+    websiteUrl: 'https://steamland.io',
+    hostname: 'harvest.steamland.io',
+    imageUrl:
+      'https://raw.githubusercontent.com/Steamland/images/main/harvest_logo.png',
+    styles: {
+      fontFamily: 'Industry, sans-serif',
+      fontWeight: 500,
+    },
+    backgroundImage:
+      'https://raw.githubusercontent.com/Steamland/images/main/harvesting_background.png',
+    tokenStandard: TokenStandard.NonFungible,
+    hideAllowedTokens: true,
+    colors: {
+      primary: '#1A1A1D',
+      secondary: '#9e333f',
+      accent: '#313063',
+      fontColor: '#FFFFFF',
+      fontColorSecondary: '#FFFFFF',
+      backgroundSecondary: '#4E4E50',
+    },
+  },
+  {
+    name: 'y00topia',
+    displayName: 'y00topia staking',
+    stakePoolAddress: new PublicKey(
+      'GJtJVCBCXVkPuzmS45zWDEkztG1EGGvNcnddL2dsbDmh'
+    ),
+    websiteUrl: 'https://twitter.com/ABCy00topia',
+    imageUrl:
+      'https://cdn.discordapp.com/attachments/1017836201685823549/1027266302894669824/white.png',
+    backgroundImage:
+      'https://cdn.discordapp.com/attachments/1017836201685823549/1027264876961349712/abc_a.png',
+    maxStaked: 1111,
+
+    receiptType: ReceiptType.Original,
+    tokenStandard: TokenStandard.NonFungible,
+    hideAllowedTokens: true,
+    links: [
+      {
+        text: 'Discord',
+        value: 'https://discord.gg/dUE4ezvUDS',
+      },
+      {
+        text: 'Twitter',
+        value: 'https://twitter.com/ABCy00topia',
+      },
+      {
+        text: 'Buy',
+        value: 'https://magiceden.io/marketplace/abc_y00topia',
+      },
+    ],
+    styles: {
+      fontFamily: 'Industry, sans-serif',
+      fontWeight: 500,
+    },
+    colors: {
+      primary: '#120d18',
+      secondary: '#e42575',
+      accent: '#33273f',
+      fontColor: '#e61f57',
+      fontColorSecondary: '#000000',
+      backgroundSecondary: '#120d18',
+    },
+  },
+  {
+    name: 'Pixel-Y00ts',
+    displayName: 'Pixel Y0ots',
+    nameInHeader: true,
+    stakePoolAddress: new PublicKey(
+      '6JAjWAWhzAdZRVXmLKpzXy8idqPY3Jb5AUUXzBPm3FGt'
+    ),
+    hostname: 'staking.pixely00ts.xyz',
+    hideFooter: true,
+    hideAllowedTokens: true,
+    websiteUrl: 'https://www.pixely00ts.xyz/',
+    receiptType: ReceiptType.Original,
+    tokenStandard: TokenStandard.NonFungible,
+    // styles to apply to the whole stake pool
+    styles: {
+      fontFamily: 'Industry, sans-serif',
+      fontWeight: 500,
+    },
+    // Colors object to style the stake page
+    colors: {
+      primary: '#181818',
+      secondary: '#177b7b',
+      backgroundSecondary: 'rgb(24 24 24 / 90%)',
+      fontColor: '#F2F2F2',
+    },
+    imageUrl:
+      'https://raw.githubusercontent.com/DicersN00b/loots-logo/main/logo.png',
+    // Background image for poolq
+    backgroundImage:
+      'https://raw.githubusercontent.com/DicersN00b/loots-logo/main/BG%20STAKING.png',
+
+    // Website url if specified will be navigated to when the image in the header is clicked
+    maxStaked: 10000,
+    links: [
+      {
+        text: 'Pixel Y00ts',
+        value: 'https://www.pixely00ts.xyz/',
+      },
+      {
+        text: 'Twitter',
+        value: 'https://twitter.com/PY00ts',
+      },
+      {
+        text: 'Discord',
+        value: 'https://discord.com/invite/pixely00ts',
+      },
+      {
+        text: 'Buy Pixel Y00ts',
+        value: 'https://magiceden.io/marketplace/pixel_yoots',
+      },
+    ],
+  },
+  {
+    name: 'hellshade',
+    displayName: 'Hellshade Staking',
+    stakePoolAddress: new PublicKey(
+      'GHZ671W39u4d4ELFvqfVeKor1fGGTunrS56PZQqM1wFM'
+    ),
+    description:
+      "Stake your artwork by @Hellshade here to start earning your $BBT '$Blackberry' Tokens for future art drops",
+    hidden: true,
+    notFound: false,
+    imageUrl:
+      'https://images-cdn.exchange.art/LH3Na6UWARcgucQoDRuIkxxaOYXIsAf-I03bPiEFhsw?ext=fastly&width=1000&optimize=medium&auto=avifwebp',
+    // secondaryImageUrl: 'https://raw.githubusercontent.com/flipthetip/test-tsc/main/arx.png',
+    backgroundImage:
+      'https://www.zingerbug.com/Backgrounds/background_images/black_stucco_wall_texture_seamless.jpg',
+    styles: {
+      fontFamily: 'Franklin Gothic Medium',
+      // fontWeight: 500,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    },
+    colors: {
+      primary: '#000000',
+      secondary: '#5d7f9e',
+      accent: '#fff2cc',
+      fontColor: '#fff2cc',
+      fontColorSecondary: '#fff2cc',
+    },
+    // maxStaked: ,
+    receiptType: ReceiptType.Original,
+  },
+  {
+    name: 'azl-nutzzz-world',
+    displayName: 'AZL Nutzz World Staking',
+    stakePoolAddress: new PublicKey(
+      'APhntuf48ME176zvV3feCo9pN5mQuXqQFsC2gBiBw895'
+    ),
+    contrastHomepageBkg: true,
+    maxStaked: 3333,
+    links: [
+      {
+        text: 'Twitter',
+        value: 'https://twitter.com/AZLnft',
+      },
+      {
+        text: 'Discord',
+        value: 'https://discord.gg/cxgnzF43BT',
+      },
+      {
+        text: 'Magic Eden',
+        value: 'https://magiceden.io/marketplace/azl_nutzzz_world',
+      },
+    ],
+
+    receiptType: ReceiptType.Original,
+    websiteUrl: 'https://stake.cardinal.so/azl-nutzzz-world',
+    imageUrl:
+      'https://bafybeihy4wxax43nyhffx5dyzrt33pjipwap6qmtli55xoft32qsgejxnu.ipfs.nftstorage.link/',
+    styles: {
+      fontFamily: 'Industry, sans-serif',
+      fontWeight: 500,
+    },
+    tokenStandard: TokenStandard.NonFungible,
+    hideAllowedTokens: true,
+    colors: {
+      // primary: '#2d0c65',
+      //secondary: '#ed69fa',
+      //accent: '#f7f6fe',
+      //fontColor: '#FFFFFF',
+      primary: '#000000',
+      secondary: '#BD38F3',
+      accent: '#8B2AB4',
+      fontColor: '#FFFFFF',
+    },
   },
 ]

@@ -1,9 +1,11 @@
-import { Text, useNavigation, View } from 'react-xnft'
+import { Text, useNavigation, useTheme, View } from 'react-xnft'
 import { StakePoolImage } from '../components/StakePoolImage'
 import { stakePoolMetadatas } from '../config/config'
 
 export function Home() {
   const nav = useNavigation()
+  const theme = useTheme()
+  console.log('-----------', theme)
   return (
     <View
       style={{
@@ -15,6 +17,7 @@ export function Home() {
     >
       {stakePoolMetadatas.map((stakePoolMetadata) => (
         <View
+          key={stakePoolMetadata.name}
           style={{
             display: 'flex',
             justifyContent: 'space-between',
